@@ -1,0 +1,38 @@
+export const games = [
+  {
+    id: "1",
+    slug: "rooster-rumble",
+    title: "Rooster Rumble",
+    title1: "ROOSTER",
+    title2: "RUMBLE",
+    genre: "STRATEGIC GLADIATOR • ACTION RPG",
+    subtitle: "Train Your Rooster. Rule the Rumble.",
+    description:
+      "Raise your rooster from a humble chick, train it into a fierce fighter, and battle your way to becoming the ultimate Rumble Champion.",
+    image: "/rooster-rumble/cover.jpeg",
+    video: "/videos/rooster-rumble.mp4",
+    tag: "🔥 CORE TITLE",
+    rating: "5.0",
+    platforms: ["iOS", "Android"],
+    buttonTitle: "COMING SOON",
+    href: true,
+  },
+  {
+    id: "2",
+    slug: "rot-in-hell",
+    title: "Rot in Hell",
+    title1: "ROT IN",
+    title2: "HELL",
+    genre: "SOUL-LIKE SURVIVAL • HARDCORE ACTION",
+    subtitle: "Death is only the beginning.",
+    description:
+      "Descend into a nightmarish underworld in this uncompromising soul-like survival saga. Battle death itself to live again.",
+    image: "/images/game-inferno.png",
+    video: "/videos/rot-in-hell.mp4",
+    tag: "🏆 FAN FAVORITE",
+    rating: "4.9",
+    platforms: ["PC", "PS5", "XSX"],
+    buttonTitle: "LAUNCH EXPERIENCE",
+    href: true,
+  },
+];

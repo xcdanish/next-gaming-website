@@ -13,13 +13,18 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@sections/*": ["components/sections/*"],
+      "@ui-cards/*": ["components/ui-cards/*"],
+      "@ui-elements/*": ["components/ui-elements/*"],
+      "@custom/*": ["components/custom/*"]
     }
   },
   "include": [
