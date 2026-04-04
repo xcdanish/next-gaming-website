@@ -10,7 +10,7 @@ export const games = [
     description:
       "Raise your rooster from a humble chick, train it into a fierce fighter, and battle your way to becoming the ultimate Rumble Champion.",
     image: "/rooster-rumble/cover.jpeg",
-    video: "https://media.githubusercontent.com/media/xcdanish/next-gaming-website/main/public/videos/rooster-rumble.mp4",
+    video: "/videos/rooster-rumble.mp4",
     tag: "🔥 CORE TITLE",
     rating: "5.0",
     platforms: ["iOS", "Android"],
@@ -28,7 +28,7 @@ export const games = [
     description:
       "Descend into a nightmarish underworld in this uncompromising soul-like survival saga. Battle death itself to live again.",
     image: "/images/game-inferno.png",
-    video: "https://media.githubusercontent.com/media/xcdanish/next-gaming-website/main/public/videos/rot-in-hell.mp4",
+    video: "/videos/rot-in-hell.mp4",
     tag: "🏆 FAN FAVORITE",
     rating: "4.9",
     platforms: ["PC", "PS5", "XSX"],
