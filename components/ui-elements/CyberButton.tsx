@@ -31,7 +31,7 @@ export const CyberButton: React.FC<CyberButtonProps> = ({
         overflow: "hidden",
         background: isPrimary ? "var(--accent-red)" : "transparent",
         color: "#fff",
-        border: isPrimary ? "none" : "1px solid rgba(224, 27, 36, 0.5)",
+        border: isPrimary ? "none" : "1px solid rgba(var(--color-primary-red-rgb), 0.5)",
         fontWeight: 800,
         letterSpacing: "0.1em",
         cursor: "pointer",
@@ -71,7 +71,7 @@ export const CyberButton: React.FC<CyberButtonProps> = ({
           height: "100%",
           background: isPrimary 
             ? "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), #fff, rgba(255, 255, 255, 0.2), transparent)"
-            : "linear-gradient(90deg, transparent, rgba(224, 27, 36, 0.2), rgba(224, 27, 36, 0.4), rgba(224, 27, 36, 0.2), transparent)",
+            : "linear-gradient(90deg, transparent, rgba(var(--color-primary-red-rgb), 0.2), rgba(var(--color-primary-red-rgb), 0.4), rgba(var(--color-primary-red-rgb), 0.2), transparent)",
           transform: "skewX(-35deg)",
           zIndex: 5,
           opacity: 0.85,

@@ -57,7 +57,7 @@ export default function ComingSoonSection() {
           width: "40vw",
           height: "60vh",
           backgroundImage:
-            "radial-gradient(circle at center, rgba(224, 27, 36, 0.055) 0%, transparent 65%)",
+            "radial-gradient(circle at center, rgba(var(--color-primary-red-rgb), 0.055) 0%, transparent 65%)",
           filter: "blur(40px)",
           zIndex: 0,
           pointerEvents: "none",
@@ -70,16 +70,10 @@ export default function ComingSoonSection() {
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
+        className="absolute bottom-0 left-1/2 md:left-[65%] w-[clamp(200px,40vw,260px)] md:w-[clamp(260px,28vw,400px)] z-0 pointer-events-none opacity-20 md:opacity-100"
         style={{
-          position: "absolute",
-          bottom: 0,
-          left: "65%",
           transform: "translateX(-50%)",
-          width: "clamp(260px, 28vw, 400px)",
-          zIndex: 0,
-          filter:
-            "drop-shadow(0px 20px 30px rgba(0,0,0,0.95)) drop-shadow(0 0 35px rgba(224,27,36,0.15))",
-          pointerEvents: "none",
+          filter: "drop-shadow(0px 20px 30px rgba(0,0,0,0.95)) drop-shadow(0 0 35px rgba(var(--color-primary-red-rgb), 0.15))",
         }}
       >
         <Image
@@ -113,8 +107,8 @@ export default function ComingSoonSection() {
               alignItems: "center",
               gap: "0.75rem",
               padding: "0.6rem 1.5rem",
-              background: "rgba(224, 27, 36, 0.05)",
-              border: "1px solid rgba(224, 27, 36, 0.2)",
+              background: "rgba(var(--color-primary-red-rgb), 0.05)",
+              border: "1px solid rgba(var(--color-primary-red-rgb), 0.2)",
               borderRadius: "4px",
               marginBottom: "3rem",
             }}

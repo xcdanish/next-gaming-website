@@ -107,7 +107,7 @@ export default function TeamSection() {
                   fontSize: "1rem",
                   fontWeight: 700,
                   marginBottom: "1.1rem",
-                  border: "2px solid rgba(224,27,36,0.35)",
+                  border: "2px solid rgba(var(--color-primary-red-rgb), 0.35)",
                   fontFamily: "var(--font-bebas-neue, Bebas Neue, display)",
                 }}
               >

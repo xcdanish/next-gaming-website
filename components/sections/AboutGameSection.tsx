@@ -30,11 +30,7 @@ export default function AboutGameSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            style={{
-              position: "relative",
-              height: "500px",
-              overflow: "visible",
-            }}
+            className="relative h-[320px] sm:h-[400px] md:h-[500px] w-full max-w-[500px] mx-auto md:max-w-none overflow-visible"
           >
             {/* ── CHAR 1 — left ── */}
             <motion.div
@@ -44,16 +40,11 @@ export default function AboutGameSection() {
               transition={{ duration: 0.7, delay: 0.05, ease: "easeOut" }}
               whileHover={{
                 y: -10,
-                filter: "drop-shadow(0 0 30px rgba(224,27,36,0.22))",
+                filter: "drop-shadow(0 0 30px rgba(var(--color-primary-red-rgb), 0.22))",
               }}
+              className="absolute bottom-0 left-0 md:-left-[5%] w-[48%] md:w-[45%] z-[2]"
               style={{
-                position: "absolute",
-                bottom: 0,
-                left: "-5%",
-                width: "45%",
-                zIndex: 2,
-                filter:
-                  "drop-shadow(0px 10px 16px rgba(0,0,0,0.85)) drop-shadow(0 0 10px rgba(224,27,36,0.1))",
+                filter: "drop-shadow(0px 10px 16px rgba(0,0,0,0.85)) drop-shadow(0 0 10px rgba(var(--color-primary-red-rgb), 0.1))",
                 transition: "filter 0.4s cubic-bezier(0.19, 1, 0.22, 1)",
               }}
             >
@@ -74,16 +65,11 @@ export default function AboutGameSection() {
               transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
               whileHover={{
                 y: -14,
-                filter: "drop-shadow(0 0 45px rgba(224,27,36,0.3))",
+                filter: "drop-shadow(0 0 45px rgba(var(--color-primary-red-rgb), 0.3))",
               }}
+              className="absolute bottom-0 left-[35%] md:left-[30%] w-[65%] sm:w-[55%] md:w-[65%] z-[4]"
               style={{
-                position: "absolute",
-                bottom: 0,
-                left: "30%",
-                width: "65%",
-                zIndex: 4,
-                filter:
-                  "drop-shadow(0px 14px 24px rgba(0,0,0,0.9)) drop-shadow(0 0 15px rgba(224,27,36,0.15))",
+                filter: "drop-shadow(0px 14px 24px rgba(0,0,0,0.9)) drop-shadow(0 0 15px rgba(var(--color-primary-red-rgb), 0.15))",
                 transition: "filter 0.4s cubic-bezier(0.19, 1, 0.22, 1)",
               }}
             >
@@ -120,7 +106,7 @@ export default function AboutGameSection() {
                   height: "6px",
                   borderRadius: "50%",
                   backgroundColor: "var(--accent-red)",
-                  boxShadow: "0 0 8px rgba(224,27,36,0.7)",
+                  boxShadow: "0 0 8px rgba(var(--color-primary-red-rgb), 0.7)",
                 }}
               />
               <span
@@ -159,7 +145,7 @@ export default function AboutGameSection() {
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
                       fontWeight: 900,
-                      filter: "drop-shadow(0 0 10px rgba(224,27,36,0.25))",
+                      filter: "drop-shadow(0 0 10px rgba(var(--color-primary-red-rgb), 0.25))",
                     }}
                   >
                     {content.title2}
@@ -178,7 +164,7 @@ export default function AboutGameSection() {
                   height: "clamp(2.2rem, 4.95vw, 4.18rem)",
                   flexShrink: 0,
                   filter:
-                    "drop-shadow(-4px 6px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 10px rgba(224,27,36,0.15))",
+                    "drop-shadow(-4px 6px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 10px rgba(var(--color-primary-red-rgb), 0.15))",
                   transition: "filter 0.3s ease",
                 }}
               >
@@ -221,8 +207,8 @@ export default function AboutGameSection() {
                     variant="caption"
                     style={{
                       padding: "0.5rem 1rem",
-                      background: i === content.tags.length - 1 ? "rgba(224,27,36,0.1)" : "rgba(255,255,255,0.05)",
-                      border: i === content.tags.length - 1 ? "1px solid rgba(224,27,36,0.2)" : "1px solid rgba(255,255,255,0.1)",
+                      background: i === content.tags.length - 1 ? "rgba(var(--color-primary-red-rgb), 0.1)" : "rgba(255,255,255,0.05)",
+                      border: i === content.tags.length - 1 ? "1px solid rgba(var(--color-primary-red-rgb), 0.2)" : "1px solid rgba(255,255,255,0.1)",
                       borderRadius: "2px",
                       color: "var(--text-primary)",
                     }}

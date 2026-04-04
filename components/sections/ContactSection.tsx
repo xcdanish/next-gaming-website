@@ -34,28 +34,7 @@ export default function ContactSection() {
     setSubmitted(true);
   };
 
-  const inputStyle: React.CSSProperties = {
-    width: "100%",
-    background: "#1a1a1a",
-    border: "1px solid rgba(255,255,255,0.1)",
-    borderRadius: "2px",
-    padding: "0.75rem 1rem",
-    color: "var(--text-primary)",
-    fontSize: "0.875rem",
-    outline: "none",
-    transition: "border-color 0.2s ease",
-    fontFamily: "var(--font-inter, Inter, sans-serif)",
-  };
 
-  const labelStyle: React.CSSProperties = {
-    display: "block",
-    fontSize: "0.65rem",
-    fontWeight: 700,
-    letterSpacing: "0.18em",
-    textTransform: "uppercase" as const,
-    color: "#555",
-    marginBottom: "0.5rem",
-  };
 
   return (
     <section
@@ -122,7 +101,7 @@ export default function ContactSection() {
                       width: "2.5rem",
                       height: "2.5rem",
                       flexShrink: 0,
-                      background: "rgba(224,27,36,0.1)",
+                      background: "rgba(var(--color-primary-red-rgb), 0.1)",
                       borderRadius: "2px",
                       display: "flex",
                       alignItems: "center",
@@ -226,8 +205,8 @@ export default function ContactSection() {
                 }}
               >
                 <div className="grid-2col" style={{ gap: "1rem" }}>
-                  <div>
-                    <label htmlFor="c-name" style={labelStyle}>
+                  <div className="group flex flex-col">
+                    <label htmlFor="c-name" className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white">
                       Name
                     </label>
                     <input
@@ -239,11 +218,11 @@ export default function ContactSection() {
                       onChange={(e) =>
                         setForm({ ...form, name: e.target.value })
                       }
-                      style={inputStyle}
+                      className="w-full bg-[#141414] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="c-email" style={labelStyle}>
+                  <div className="group flex flex-col">
+                    <label htmlFor="c-email" className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white">
                       Email
                     </label>
                     <input
@@ -255,13 +234,13 @@ export default function ContactSection() {
                       onChange={(e) =>
                         setForm({ ...form, email: e.target.value })
                       }
-                      style={inputStyle}
+                      className="w-full bg-[#141414] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="c-subject" style={labelStyle}>
+                <div className="group flex flex-col">
+                  <label htmlFor="c-subject" className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white">
                     Subject
                   </label>
                   <input
@@ -273,12 +252,12 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setForm({ ...form, subject: e.target.value })
                     }
-                    style={inputStyle}
+                    className="w-full bg-[#141414] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="c-message" style={labelStyle}>
+                <div className="group flex flex-col">
+                  <label htmlFor="c-message" className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white">
                     Message
                   </label>
                   <textarea
@@ -290,7 +269,8 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setForm({ ...form, message: e.target.value })
                     }
-                    style={{ ...inputStyle, resize: "none" }}
+                    className="w-full bg-[#141414] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
+                    style={{ resize: "none" }}
                   />
                 </div>
 

@@ -162,7 +162,7 @@ export default function CareersSection() {
                   <Typography
                     variant="caption"
                     style={{
-                      background: "rgba(224,27,36,0.14)",
+                      background: "rgba(var(--color-primary-red-rgb), 0.14)",
                       color: "var(--accent-red)",
                       padding: "0.15rem 0.55rem",
                       borderRadius: "2px",

@@ -55,17 +55,9 @@ export default function Footer() {
       }}
     >
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            gap: "4rem",
-            marginBottom: "5rem",
-          }}
-        >
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16 mb-20 text-center lg:text-left">
           {/* LOGO COLUMN */}
-          <div style={{ flex: "0 0 180px" }}>
+          <div className="flex-shrink-0">
             <div
               style={{
                 transition: "transform 0.3s ease, filter 0.3s ease",
@@ -91,7 +83,7 @@ export default function Footer() {
           </div>
 
           {/* CONTENT + ICONS COLUMN */}
-          <div style={{ flex: "1", maxWidth: "450px", marginTop: "1rem" }}>
+          <div className="flex-1 max-w-[450px] mt-4 flex flex-col items-center lg:items-start">
             <Typography
               variant="b2"
               style={{
@@ -106,7 +98,7 @@ export default function Footer() {
             </Typography>
 
 
-            <div style={{ display: "flex", gap: "1.5rem" }}>
+            <div className="flex justify-center lg:justify-start gap-6">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -135,7 +127,7 @@ export default function Footer() {
           </div>
 
           {/* GAME PARTNERS COLUMN */}
-          <div style={{ flex: "0 0 160px", marginTop: "1rem" }}>
+          <div className="flex-shrink-0 mt-4 flex flex-col items-center lg:items-start">
             <Typography
               variant="h6"
               style={{
@@ -154,13 +146,7 @@ export default function Footer() {
               />
               GAME PARTNERS
             </Typography>
-            <nav
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1.25rem",
-              }}
-            >
+            <nav className="flex flex-col items-center lg:items-start gap-5">
               {content.partners.map((partner) => (
                   <Typography
                     key={partner}
@@ -190,7 +176,7 @@ export default function Footer() {
           </div>
 
           {/* STUDIO COLUMN */}
-          <div style={{ flex: "0 0 120px", marginTop: "1rem" }}>
+          <div className="flex-shrink-0 mt-4 flex flex-col items-center lg:items-start">
             <Typography
               variant="h6"
               style={{
@@ -209,18 +195,17 @@ export default function Footer() {
               />
               STUDIO
             </Typography>
-            <nav
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1.25rem",
-              }}
-            >
-              {content.studioLinks.map((link) => (
+            <nav className="flex flex-col items-center lg:items-start gap-5">
+              {content.studioLinks.map((link) => {
+                let targetId = "#hero";
+                if (link === "Our Games") targetId = "#games";
+                if (link === "Join Us") targetId = "#about";
+
+                return (
                 <button
                   key={link}
                   onClick={() =>
-                    scrollTo(`#${link.toLowerCase().replace(" ", "")}`)
+                    scrollTo(targetId)
                   }
                   onMouseEnter={(e: React.MouseEvent<HTMLElement>) => {
                     e.currentTarget.style.color = "var(--accent-red)";
@@ -247,7 +232,8 @@ export default function Footer() {
                 >
                   {link}
                 </button>
-              ))}
+                );
+              })}
             </nav>
           </div>
         </div>

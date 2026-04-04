@@ -13,7 +13,6 @@ const navLinks = [
   { label: "Join Us", href: "#about" },
 ];
 
-
 import { useSound } from "@/components/providers/SoundProvider";
 
 export default function Navbar() {
@@ -47,7 +46,6 @@ export default function Navbar() {
     }
   };
 
-
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -80,7 +78,7 @@ export default function Navbar() {
           background: "linear-gradient(90deg, var(--accent-red), #ff2d37)",
           transformOrigin: "0%",
           zIndex: 101,
-          boxShadow: "0 0 15px rgba(224, 27, 36, 0.4)",
+          boxShadow: "0 0 15px rgba(var(--color-primary-red-rgb), 0.4)",
         }}
       />
       <div
@@ -173,11 +171,11 @@ export default function Navbar() {
             variants={{
               initial: {
                 background: "rgba(255,255,255,0.03)",
-                borderColor: "rgba(224, 27, 36, 0.4)",
+                borderColor: "rgba(var(--color-primary-red-rgb), 0.4)",
               },
               hovered: {
-                background: "rgba(224, 27, 36, 0.1)",
-                borderColor: "rgba(224, 27, 36, 0.8)",
+                background: "rgba(var(--color-primary-red-rgb), 0.1)",
+                borderColor: "rgba(var(--color-primary-red-rgb), 0.8)",
               },
             }}
             style={{
@@ -222,7 +220,7 @@ export default function Navbar() {
                 width: "100%",
                 height: "100%",
                 background:
-                  "linear-gradient(90deg, transparent, rgba(224, 27, 36, 0.2), rgba(224, 27, 36, 0.4), rgba(224, 27, 36, 0.2), transparent)",
+                  "linear-gradient(90deg, transparent, rgba(var(--color-primary-red-rgb), 0.2), rgba(var(--color-primary-red-rgb), 0.4), rgba(var(--color-primary-red-rgb), 0.2), transparent)",
                 transform: "skewX(-35deg)",
                 zIndex: 5,
                 opacity: 0.85,
@@ -297,19 +295,23 @@ export default function Navbar() {
         </div>
 
         {/* ── HAMBURGER (visible ONLY on mobile via .nav-hamburger CSS) ── */}
-        <button
+        <motion.button
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           className="nav-hamburger"
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ backgroundColor: "rgba(255,255,255, 0.05)" }}
           style={{
-            background: "none",
+            background: "transparent",
             border: "none",
+            borderRadius: "4px",
             cursor: "pointer",
-            padding: "0.4rem",
+            padding: "0.4rem 0.5rem",
             flexDirection: "column",
             gap: "5px",
             flexShrink: 0,
+            transition: "all 0.3s ease",
           }}
         >
           <span
@@ -343,16 +345,18 @@ export default function Navbar() {
               display: "block",
               width: "22px",
               height: "2px",
-              background: "var(--text-primary)",
+              background: menuOpen
+                ? "var(--accent-red)"
+                : "var(--text-primary)",
               borderRadius: "1px",
-              transition: "transform 0.25s ease",
+              transition: "transform 0.25s ease, background 0.3s ease",
               transformOrigin: "center",
               transform: menuOpen
                 ? "rotate(-45deg) translate(0px, -7px)"
                 : "none",
             }}
           />
-        </button>
+        </motion.button>
       </div>
 
       {/* ── MOBILE MENU DROPDOWN ── */}
@@ -384,31 +388,38 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.04, duration: 0.25 }}
                 >
-                  <Typography
-                    component="button"
-                    variant="b1"
-                    onClick={() => scrollTo(link.href)}
+                  <div
                     style={{
-                      display: "block",
-                      width: "100%",
-                      textAlign: "left" as const,
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      color: "var(--text-secondary)",
-                      padding: "0.75rem 0",
                       borderBottom: "1px solid rgba(255,255,255,0.05)",
-                      transition: "color 0.2s ease",
+                      paddingBottom: "0.5rem",
+                      marginBottom: "0.5rem",
                     }}
-                    onMouseEnter={(e: React.MouseEvent<HTMLElement>) =>
-                      (e.currentTarget.style.color = "var(--text-primary)")
-                    }
-                    onMouseLeave={(e: React.MouseEvent<HTMLElement>) =>
-                      (e.currentTarget.style.color = "var(--text-secondary)")
-                    }
                   >
-                    {link.label}
-                  </Typography>
+                    <Typography
+                      component="button"
+                      variant="b1"
+                      onClick={() => scrollTo(link.href)}
+                      className="nav-link"
+                      style={{
+                        display: "inline-block",
+                        textAlign: "left" as const,
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        color: "var(--text-secondary)",
+                        padding: "0.25rem 0",
+                        transition: "color 0.2s ease",
+                      }}
+                      onMouseEnter={(e: React.MouseEvent<HTMLElement>) =>
+                        (e.currentTarget.style.color = "var(--text-primary)")
+                      }
+                      onMouseLeave={(e: React.MouseEvent<HTMLElement>) =>
+                        (e.currentTarget.style.color = "var(--text-secondary)")
+                      }
+                    >
+                      {link.label}
+                    </Typography>
+                  </div>
                 </motion.div>
               ))}
               <div style={{ marginTop: "1.25rem" }}>

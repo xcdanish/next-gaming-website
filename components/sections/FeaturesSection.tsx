@@ -59,15 +59,15 @@ export default function FeaturesSection() {
               style={{
                 padding: "2.5rem 2rem",
                 background: "rgba(255,255,255,0.02)", // Requirement says light but I should stick to dark given primary colors
-                border: "1px solid rgba(224,27,36,0.15)",
+                border: "1px solid rgba(var(--color-primary-red-rgb), 0.15)",
                 borderRadius: "2px",
                 transition: "all 0.3s ease",
               }}
               whileHover={{
                 y: -10,
                 background: "rgba(255,255,255,0.05)",
-                borderColor: "rgba(224,27,36,0.6)",
-                boxShadow: "0 8px 30px rgba(224,27,36,0.1)",
+                borderColor: "rgba(var(--color-primary-red-rgb), 0.6)",
+                boxShadow: "0 8px 30px rgba(var(--color-primary-red-rgb), 0.1)",
               }}
             >
               <div style={{ fontSize: "3rem", marginBottom: "1.5rem" }}>

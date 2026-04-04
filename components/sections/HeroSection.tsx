@@ -155,7 +155,7 @@ export default function HeroSection({
               display: "block",
               color: "var(--text-primary)",
               textShadow:
-                "0 0 25px rgba(224,27,36,0.4), 0 0 50px rgba(224,27,36,0.2)",
+                "0 0 25px rgba(var(--color-primary-red-rgb), 0.4), 0 0 50px rgba(var(--color-primary-red-rgb), 0.2)",
             }}
           >
             {title1.split("").map((char, i) => (
@@ -174,7 +174,7 @@ export default function HeroSection({
             style={{
               display: "block",
               color: "var(--accent-red)",
-              textShadow: "0 0 15px rgba(224,27,36,0.3)",
+              textShadow: "0 0 15px rgba(var(--color-primary-red-rgb), 0.3)",
             }}
           >
             {title2.split("").map((char, i) => (
