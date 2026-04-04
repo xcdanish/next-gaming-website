@@ -9,7 +9,7 @@ export default function VisionSection() {
     <section id="vision" style={{ 
       padding: "8rem 0", 
       backgroundColor: "var(--bg-primary)",
-      backgroundImage: "radial-gradient(circle at 80% 50%, rgba(224,27,36,0.05) 0%, transparent 40%)",
+      backgroundImage: "radial-gradient(circle at 80% 50%, rgba(var(--color-primary-red-rgb), 0.05) 0%, transparent 40%)",
       overflow: "hidden" 
     }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}>
@@ -60,7 +60,7 @@ export default function VisionSection() {
               transform: "translate(-50%, -50%)",
               width: "100%", 
               height: "100%", 
-              backgroundColor: "rgba(224,27,36,0.15)",
+              backgroundColor: "rgba(var(--color-primary-red-rgb), 0.15)",
               filter: "blur(100px)",
               borderRadius: "50%",
               zIndex: 0
@@ -69,7 +69,7 @@ export default function VisionSection() {
             <div style={{ 
               position: "relative", 
               zIndex: 1,
-              filter: "drop-shadow(0 0 35px rgba(224,27,36,0.3))"
+              filter: "drop-shadow(0 0 35px rgba(var(--color-primary-red-rgb), 0.3))"
             }}>
               <Image
                 src="/images/damien.png"

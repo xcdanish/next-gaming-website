@@ -44,7 +44,7 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
             height: "10px",
             background: "var(--accent-red)",
             transform: "rotate(45deg)",
-            boxShadow: "0 0 10px rgba(224,27,36,1), 0 0 20px rgba(224,27,36,0.5)",
+            boxShadow: "0 0 10px rgba(var(--color-primary-red-rgb), 1), 0 0 20px rgba(var(--color-primary-red-rgb), 0.5)",
           }}
         />
       </motion.div>
@@ -56,7 +56,7 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
           width: "24px",
           flexShrink: 0,
           background: "var(--accent-red)",
-          boxShadow: "0 0 6px rgba(224,27,36,0.7)",
+          boxShadow: "0 0 6px rgba(var(--color-primary-red-rgb), 0.7)",
         }}
       />
 
@@ -66,7 +66,7 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
           height: "1px",
           width: "28px",
           flexShrink: 0,
-          background: "linear-gradient(90deg, rgba(224,27,36,0.55), rgba(224,27,36,0.08))",
+          background: "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.55), rgba(var(--color-primary-red-rgb), 0.08))",
         }}
       />
 
@@ -75,7 +75,7 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
         style={{
           height: "1px",
           flex: 1,
-          background: "linear-gradient(90deg, rgba(224,27,36,0.08), rgba(224,27,36,0.18), rgba(224,27,36,0.08))",
+          background: "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.08), rgba(var(--color-primary-red-rgb), 0.18), rgba(var(--color-primary-red-rgb), 0.08))",
         }}
       />
 
@@ -85,7 +85,7 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
           height: "1px",
           width: "28px",
           flexShrink: 0,
-          background: "linear-gradient(90deg, rgba(224,27,36,0.08), rgba(224,27,36,0.55))",
+          background: "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.08), rgba(var(--color-primary-red-rgb), 0.55))",
         }}
       />
 
@@ -96,7 +96,7 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
           width: "24px",
           flexShrink: 0,
           background: "var(--accent-red)",
-          boxShadow: "0 0 6px rgba(224,27,36,0.7)",
+          boxShadow: "0 0 6px rgba(var(--color-primary-red-rgb), 0.7)",
         }}
       />
 
@@ -119,7 +119,7 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
             height: "10px",
             background: "var(--accent-red)",
             transform: "rotate(45deg)",
-            boxShadow: "0 0 10px rgba(224,27,36,1), 0 0 20px rgba(224,27,36,0.5)",
+            boxShadow: "0 0 10px rgba(var(--color-primary-red-rgb), 1), 0 0 20px rgba(var(--color-primary-red-rgb), 0.5)",
           }}
         />
       </motion.div>

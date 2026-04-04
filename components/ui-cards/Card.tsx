@@ -17,8 +17,9 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <motion.div
-      className={`game-card ${className}`}
+      className={`game-card outline-none ${className}`}
       style={{ cursor: "pointer", ...style }}
+      tabIndex={0}
       {...props}
     >
       {children}
@@ -118,8 +119,8 @@ export const CardContentOverlay: React.FC<{
     }}
     className={
       isHovered
-        ? "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0"
-        : "opacity-100 group-hover:opacity-0"
+        ? "opacity-0 translate-y-4 group-hover:opacity-100 group-focus:opacity-100 group-focus-within:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-focus-within:translate-y-0 group-active:translate-y-0"
+        : "opacity-100 group-hover:opacity-0 group-focus:opacity-0 group-focus-within:opacity-0 group-active:opacity-0"
     }
   >
     {children}

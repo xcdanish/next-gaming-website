@@ -148,7 +148,7 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
     const glowStyle: React.CSSProperties = glow
       ? {
           textShadow:
-            "0 0 15px rgba(224, 27, 36, 0.4), 0 0 30px rgba(224, 27, 36, 0.2)",
+            "0 0 15px rgba(var(--color-primary-red-rgb), 0.4), 0 0 30px rgba(var(--color-primary-red-rgb), 0.2)",
         }
       : {};
 

@@ -30,7 +30,7 @@ export const MilestoneItem: React.FC<MilestoneItemProps> = ({
         position: "absolute", left: "-2.55rem", top: "0.25rem",
         width: "12px", height: "12px", borderRadius: "50%",
         backgroundColor: "var(--accent-red)",
-        boxShadow: "0 0 0 4px rgba(224,27,36,0.18)",
+        boxShadow: "0 0 0 4px rgba(var(--color-primary-red-rgb), 0.18)",
       }} />
       <span className="font-display" style={{ fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--accent-red)" }}>
         {year}

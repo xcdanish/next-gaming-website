@@ -19,7 +19,7 @@ const TimelineMarker = () => {
         whileInView={{
           scale: 1,
           backgroundColor: "var(--accent-red)",
-          boxShadow: "0 0 15px rgba(224, 27, 36, 0.8)",
+          boxShadow: "0 0 15px rgba(var(--color-primary-red-rgb), 0.8)",
         }}
         viewport={{ once: false, amount: 0.8, margin: "-10% 0px -10% 0px" }}
         transition={{ duration: 0.4, ease: "backOut" }}
@@ -96,7 +96,7 @@ export default function StudioSection() {
               top: "0",
               bottom: "0",
               width: "2px",
-              backgroundColor: "rgba(224, 27, 36, 0.1)", // Faded background line
+              backgroundColor: "rgba(var(--color-primary-red-rgb), 0.1)", // Faded background line
               transformOrigin: "top",
             }}
           >
@@ -110,7 +110,7 @@ export default function StudioSection() {
                 backgroundColor: "var(--accent-red)",
                 scaleY,
                 transformOrigin: "top",
-                boxShadow: "0 0 15px rgba(224, 27, 36, 0.6)",
+                boxShadow: "0 0 15px rgba(var(--color-primary-red-rgb), 0.6)",
               }}
             />
           </motion.div>
@@ -141,7 +141,7 @@ export default function StudioSection() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  border: "1px solid rgba(224, 27, 36, 0.2)",
+                  border: "1px solid rgba(var(--color-primary-red-rgb), 0.2)",
                   padding: "1.5rem",
                   transition: "all 0.3s ease",
                 }}
@@ -192,7 +192,7 @@ export default function StudioSection() {
                     "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%)",
                   padding: "2.5rem",
                   borderRadius: "8px",
-                  border: "1px solid rgba(224, 27, 36, 0.15)",
+                  border: "1px solid rgba(var(--color-primary-red-rgb), 0.15)",
                   display: "flex",
                   alignItems: "center",
                   gap: "1.5rem",
@@ -202,7 +202,7 @@ export default function StudioSection() {
               >
                 <div
                   style={{
-                    background: "rgba(224, 27, 36, 0.1)",
+                    background: "rgba(var(--color-primary-red-rgb), 0.1)",
                     padding: "1.25rem",
                     borderRadius: "50%",
                     color: "var(--accent-red)",
@@ -237,7 +237,7 @@ export default function StudioSection() {
                     "linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%)",
                   padding: "2.5rem",
                   borderRadius: "8px",
-                  border: "1px solid rgba(224, 27, 36, 0.15)",
+                  border: "1px solid rgba(var(--color-primary-red-rgb), 0.15)",
                   display: "flex",
                   alignItems: "center",
                   gap: "1.5rem",
@@ -247,7 +247,7 @@ export default function StudioSection() {
               >
                 <div
                   style={{
-                    background: "rgba(224, 27, 36, 0.1)",
+                    background: "rgba(var(--color-primary-red-rgb), 0.1)",
                     padding: "1.25rem",
                     borderRadius: "50%",
                     color: "var(--accent-red)",
@@ -346,7 +346,7 @@ export default function StudioSection() {
                           fontSize: "3rem",
                           fontWeight: 700,
                           fontFamily: "var(--font-bebas-neue)",
-                          color: "rgba(224, 27, 36, 0.5)",
+                          color: "rgba(var(--color-primary-red-rgb), 0.5)",
                         }}
                       >
                         {member.initials}
