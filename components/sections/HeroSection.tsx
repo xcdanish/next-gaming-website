@@ -33,9 +33,15 @@ export default function HeroSection({
 }: HeroSectionProps) {
 
   const { isMuted } = useSound();
-
-
+  const videoRef = useRef<HTMLVideoElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+      videoRef.current.play().catch((err) => console.warn("Video auto-play prevented:", err));
+    }
+  }, [isMuted, video]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -68,10 +74,11 @@ export default function HeroSection({
     >
       {/* BG Video */}
       <video
+        ref={videoRef}
         autoPlay
-        muted={isMuted}
+        muted // KEEP THIS STATIC. Mobile browsers require the raw HTML muted attribute for autoplay.
         loop
-        key={video} // Important: Restart video when source changes
+        key={video}
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
