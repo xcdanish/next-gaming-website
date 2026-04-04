@@ -157,9 +157,8 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* ── DESKTOP CTA (hidden on mobile) ── */}
+        {/* ── RIGHT CONTROLS (Always visible, items handle their own responsive display) ── */}
         <div
-          className="nav-desktop"
           style={{ display: "flex", alignItems: "center", gap: "1rem" }}
         >
           {/* Audio Toggle */}
@@ -281,18 +280,20 @@ export default function Navbar() {
             </div>
           </motion.button>
 
-          <CyberButton
-            onClick={() => scrollTo("#gallery")}
-            style={{
-              fontSize: "0.65rem",
-              padding: "0.5rem 1rem",
-              height: "36px", // Specifically matching the audio button height
-              minWidth: "100px",
-            }}
-          >
-            Play Now
-          </CyberButton>
-        </div>
+          {/* Play Now CTA (Desktop only) */}
+          <div className="nav-desktop">
+            <CyberButton
+              onClick={() => scrollTo("#gallery")}
+              style={{
+                fontSize: "0.65rem",
+                padding: "0.5rem 1rem",
+                height: "36px", // Specifically matching the audio button height
+                minWidth: "100px",
+              }}
+            >
+              Play Now
+            </CyberButton>
+          </div>
 
         {/* ── HAMBURGER (visible ONLY on mobile via .nav-hamburger CSS) ── */}
         <motion.button
@@ -357,6 +358,7 @@ export default function Navbar() {
             }}
           />
         </motion.button>
+        </div>
       </div>
 
       {/* ── MOBILE MENU DROPDOWN ── */}
