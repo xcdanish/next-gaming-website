@@ -48,6 +48,7 @@ export default function GamePage({ params }: GamePageProps) {
         subtitle={game.subtitle}
         description={game.description}
         video={game.video}
+        poster={game.image}
         buttonTitle="EXPLORE MORE"
       />
       {/* Conditional About Section */}

@@ -18,6 +18,7 @@ interface HeroSectionProps {
   subtitle?: string;
   description?: string;
   video?: string;
+  poster?: string;
   buttonTitle?: string;
   onButtonClick?: () => void;
 }
@@ -28,6 +29,7 @@ export default function HeroSection({
   subtitle = heroDefaults.subtitle,
   description = heroDefaults.description,
   video = heroDefaults.video,
+  poster = heroDefaults.poster,
   buttonTitle = heroDefaults.buttonTitle,
   onButtonClick,
 }: HeroSectionProps) {
@@ -80,6 +82,8 @@ export default function HeroSection({
         loop
         key={video}
         playsInline
+        preload="auto"
+        poster={poster}
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
         style={{ filter: "brightness(0.65)" }}

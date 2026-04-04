@@ -7,6 +7,7 @@ export const heroDefaults = {
   description:
     "Raise your rooster from a humble chick, train it into a fierce fighter, and battle your way to becoming the ultimate Rumble Champion.",
   video: "/videos/rooster-rumble.mp4",
+  poster: "/rooster-rumble/cover.jpeg",
   buttonTitle: "Notify Me on Launch",
 };
 
