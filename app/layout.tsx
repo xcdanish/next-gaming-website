@@ -51,6 +51,7 @@ export default function RootLayout({
         {
           "--font-body": "var(--font-space-grotesk)",
           "--font-display": "var(--font-bebas-neue)",
+          overflowX: "hidden", // Added to prevent global horizontal scroll
         } as React.CSSProperties
       }
       suppressHydrationWarning

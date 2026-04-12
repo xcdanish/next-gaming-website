@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Typography } from "@ui-elements/Typography";
 import { CyberButton } from "@ui-elements/CyberButton";
@@ -29,6 +29,8 @@ const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
   Discord: DiscordIcon,
 };
 
+import { sendEmail } from "@app/actions/sendEmail";
+
 export default function ContactSection() {
   const socialLinks = socialData.map((link) => ({
     ...link,
@@ -42,13 +44,37 @@ export default function ContactSection() {
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+
+  useEffect(() => {
+    if (showSuccessAlert) {
+      const timer = setTimeout(() => setShowSuccessAlert(false), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccessAlert]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+    setError(null);
+
+    try {
+      const result = await sendEmail(form);
+
+      if (result.success) {
+        setSubmitted(true);
+        setShowSuccessAlert(true);
+        // Reset form after success
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setError(result.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Failed to send message. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -58,6 +84,7 @@ export default function ContactSection() {
         padding: "6rem 0",
         backgroundColor: "var(--bg-primary)",
         border: "none",
+        overflow: "hidden",
       }}
     >
       <div
@@ -316,6 +343,12 @@ export default function ContactSection() {
                   />
                 </div>
 
+                {error && (
+                  <div style={{ color: "var(--accent-red)", fontSize: "0.85rem", textAlign: "center", marginBottom: "0.5rem" }}>
+                    {error}
+                  </div>
+                )}
+
                 <CyberButton
                   type="submit"
                   disabled={loading}
@@ -334,6 +367,52 @@ export default function ContactSection() {
           </motion.div>
         </div>
       </div>
+      
+      {/* SUCCESS ALERT TOAST (Top Right) */}
+      {showSuccessAlert && (
+        <motion.div 
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -50, opacity: 0 }}
+          style={{
+            position: "fixed",
+            top: "2rem",
+            right: "2rem",
+            background: "var(--bg-card)",
+            border: "1px solid var(--accent-red)",
+            padding: "1rem 2rem",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+            backdropFilter: "blur(10px)"
+          }}
+        >
+          <div style={{ fontSize: "1.5rem" }}>🚀</div>
+          <div>
+            <Typography variant="caption" style={{ color: "var(--accent-red)", display: "block", fontWeight: "bold", marginBottom: "2px" }}>
+              MISSION SUCCESS
+            </Typography>
+            <Typography variant="b3" style={{ color: "white", textTransform: "none" }}>
+              Your message has been received!
+            </Typography>
+          </div>
+          <button 
+            onClick={() => setShowSuccessAlert(false)}
+            style={{ 
+              background: "none", 
+              border: "none", 
+              color: "white", 
+              cursor: "pointer", 
+              marginLeft: "1rem",
+              opacity: 0.5
+            }}
+          >
+            ✕
+          </button>
+        </motion.div>
+      )}
     </section>
   );
 }

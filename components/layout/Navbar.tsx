@@ -7,7 +7,7 @@ import { Typography } from "@ui-elements/Typography";
 import { useRouter, usePathname } from "next/navigation";
 
 const navLinks = [
-  { label: "Home", href: "#hero" },
+  { label: "Home", href: "#hero-carousel" },
   { label: "Our Games", href: "#games" },
   { label: "Join Us", href: "#studio" },
 ];
@@ -36,13 +36,13 @@ export default function Navbar() {
   const scrollTo = (href: string) => {
     setMenuOpen(false);
     if (pathname !== "/") {
-      if (href === "#hero" || href === "#top") {
+      if (href === "#hero-carousel" || href === "#top") {
         router.push("/");
       } else {
         router.push("/" + href);
       }
     } else {
-      if (href === "#hero" || href === "#top") {
+      if (href === "#hero-carousel" || href === "#top") {
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         const element = document.querySelector(href);
@@ -144,14 +144,16 @@ export default function Navbar() {
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
                 className="nav-link"
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  lineHeight: 1,
-                  padding: "0.5rem 0",
-                  textTransform: "uppercase",
-                }}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    lineHeight: 1,
+                    padding: "0.5rem 0",
+                    textTransform: "uppercase",
+                    fontSize: "1rem", // Increased from 0.7rem
+                    letterSpacing: "0.1em",
+                  }}
               >
                 {link.label}
               </Typography>
@@ -263,7 +265,7 @@ export default function Navbar() {
                     <Typography
                       component="button"
                       variant="b1"
-                      onClick={() => scrollTo(link.label === "Join Us" ? "#studio" : link.href)}
+                      onClick={() => scrollTo(link.href)}
                       className="nav-link"
                       style={{
                         display: "inline-block",

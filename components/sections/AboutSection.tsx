@@ -17,6 +17,8 @@ export interface AboutSectionProps {
   tags?: string[];
   footer?: string;
   showBackButton?: boolean;
+  /** If true, the 2nd image in dual-image layout is flipped horizontally */
+  flipSecond?: boolean;
 }
 
 export default function AboutSection({
@@ -29,6 +31,7 @@ export default function AboutSection({
   tags,
   footer,
   showBackButton,
+  flipSecond = false,
 }: AboutSectionProps) {
   return (
     <section
@@ -41,6 +44,27 @@ export default function AboutSection({
         overflow: "hidden",
       }}
     >
+      <style>{`
+        @media (max-width: 1024px) {
+          .about-dual-wrapper { 
+            aspect-ratio: 1.2 / 1 !important;
+            height: auto !important;
+            max-width: 100% !important;
+          }
+          .about-char-box { width: 60% !important; }
+        }
+        @media (max-width: 768px) {
+          .about-dual-wrapper { 
+            aspect-ratio: 1 / 0.8 !important; 
+            height: auto !important;
+            margin-top: 2rem;
+            max-width: 100% !important;
+            width: 100% !important;
+          }
+          .about-char-box { width: 62% !important; }
+        }
+      `}</style>
+
       <div
         style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
       >
@@ -170,18 +194,22 @@ export default function AboutSection({
           {/* RIGHT IMAGE(S) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, x: 40 }}
-            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 1, ease: "circOut" }}
-            className={
-              images?.length === 2
-                ? "relative h-[320px] sm:h-[400px] md:h-[500px] w-full max-w-[500px] mx-auto md:max-w-none overflow-visible"
-                : "relative"
-            }
+            className={`
+              ${images?.length === 2 ? "about-dual-wrapper" : ""}
+              relative w-full mx-auto md:max-w-none overflow-visible
+            `}
             style={{
               display: images?.length === 2 ? "block" : "flex",
               justifyContent: "center",
               alignItems: "flex-end",
+              position: "relative",
+              width: "100%",
+              height: images?.length === 2 ? "620px" : "auto",
+              minHeight: images?.length === 2 ? "320px" : "0",
+              marginTop: images?.length === 2 ? "-5rem" : "0", // Pull up level with text
             }}
           >
             {/* GLOW EFFECT */}
@@ -203,18 +231,22 @@ export default function AboutSection({
             {images?.map((src, i) => {
               const isDual = images.length === 2;
 
-              let motionClasses = "relative z-[1] w-full"; // Single Image Default
+              // Single image — default layout
+              let motionClasses = "relative z-[1] w-full";
+
               if (isDual) {
                 if (i === 0) {
-                  // Char 1: Medium sized, positioned on the left
+                  // Left huge character
                   motionClasses =
-                    "absolute bottom-0 left-0 md:-left-[5%] w-[48%] md:w-[45%] z-[2]";
+                    "about-char-box absolute bottom-0 left-0 w-[58%] md:w-[62%] z-[2]";
                 } else if (i === 1) {
-                  // Char 2: Large sized, positioned slightly to the right, overlapping
+                  // Right huge character
                   motionClasses =
-                    "absolute bottom-0 left-[35%] md:left-[30%] w-[65%] sm:w-[55%] md:w-[65%] z-[4]";
+                    "about-char-box absolute bottom-0 right-0 w-[58%] md:w-[62%] z-[4]";
                 }
               }
+
+              const shouldFlip = isDual && i === 1 && flipSecond;
 
               return (
                 <motion.div
@@ -254,6 +286,7 @@ export default function AboutSection({
                       height: "auto",
                       display: "block",
                       filter: "contrast(1.1) brightness(1.1)",
+                      transform: shouldFlip ? "scaleX(-1)" : undefined,
                     }}
                   />
                 </motion.div>

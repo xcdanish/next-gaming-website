@@ -66,7 +66,7 @@ export default function HeroCarouselSection({
   return (
     <section
       id="hero-carousel"
-      className="relative w-full min-h-screen overflow-hidden flex items-center md:items-end p-0 bg-[var(--bg-primary)]"
+      className="relative w-full min-h-screen overflow-x-hidden flex items-center md:items-end p-0 bg-[var(--bg-primary)]"
     >
       {/* BG Carousel Images */}
       <AnimatePresence mode="popLayout">

@@ -19,6 +19,7 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
       style={{
         display: "flex",
         alignItems: "center",
+        width: "100%",
         marginTop: `${mt}rem`,
         marginBottom: `${mb}rem`,
         transformOrigin: "center",

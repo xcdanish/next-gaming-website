@@ -26,6 +26,7 @@ export default function GamesSection() {
         padding: "8rem 0",
         backgroundColor: "var(--bg-primary)",
         border: "none",
+        overflow: "hidden",
       }}
     >
       <div

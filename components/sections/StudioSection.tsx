@@ -55,7 +55,7 @@ export default function StudioSection() {
         padding: "10rem 0 12rem", // Increased padding
         backgroundColor: "var(--bg-primary)",
         position: "relative",
-        overflow: "visible",
+        overflow: "hidden",
         border: "none",
       }}
     >

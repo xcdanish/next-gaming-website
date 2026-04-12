@@ -65,12 +65,16 @@ export default function Footer() {
         borderTop: "3px solid var(--accent-red)",
         padding: "6rem 0 3rem",
         position: "relative",
+        overflow: "hidden",
       }}
     >
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}>
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16 mb-20 text-center lg:text-left">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-8 mb-20 text-center lg:text-left">
           {/* LOGO COLUMN */}
-          <div className="flex-shrink-0">
+          <div
+            className="flex-shrink-0 flex items-start justify-center lg:justify-start"
+            style={{ alignSelf: "flex-start" }}
+          >
             <div
               onClick={() => scrollTo("#hero")}
               style={{
@@ -89,15 +93,15 @@ export default function Footer() {
               <Image
                 src="/icons/reddevil-logo.png"
                 alt="Red Devil Studio"
-                width={160}
-                height={160}
-                style={{ objectFit: "contain", marginTop: "-20px" }}
+                width={500}
+                height={500}
+                style={{ objectFit: "contain", width: "200px", height: "auto" }}
               />
             </div>
           </div>
 
           {/* CONTENT + ICONS COLUMN */}
-          <div className="flex-1 max-w-[450px] mt-4 flex flex-col items-center lg:items-start">
+          <div className="flex-1 max-w-[450px] flex flex-col items-center lg:items-start">
             <Typography
               variant="b2"
               style={{
@@ -140,7 +144,10 @@ export default function Footer() {
           </div>
 
           {/* STUDIO COLUMN */}
-          <div className="flex-shrink-0 mt-4 flex flex-col items-center lg:items-start">
+          <div
+            className="flex-shrink-0 flex flex-col items-center lg:items-start"
+            style={{ alignSelf: "flex-start" }}
+          >
             <Typography
               variant="h6"
               style={{
