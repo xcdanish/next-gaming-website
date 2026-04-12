@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 import { Typography } from "@ui-elements/Typography";
-
 
 import {
   InstagramIcon,
@@ -10,11 +10,14 @@ import {
   LinkedinIcon,
   YoutubeIcon,
   DiscordIcon,
-} from "@/components/icons";
+} from "@components/icons";
 
-import { footerContent as content, socialLinks as socialData } from "@/lib/content";
+import { footerContent as content } from "@lib/footer-data";
+import { socialLinks as socialData } from "@lib/social-data";
 
-const iconMap: { [key: string]: (props: { size?: number }) => React.JSX.Element } = {
+const iconMap: {
+  [key: string]: (props: { size?: number }) => React.JSX.Element;
+} = {
   Instagram: InstagramIcon,
   X: XIcon,
   LinkedIn: LinkedinIcon,
@@ -22,9 +25,9 @@ const iconMap: { [key: string]: (props: { size?: number }) => React.JSX.Element 
   Discord: DiscordIcon,
 };
 
-
-
 export default function Footer() {
+  const router = useRouter();
+  const pathname = usePathname();
 
   const socialLinks = socialData
     .filter((s) => iconMap[s.label])
@@ -36,13 +39,23 @@ export default function Footer() {
       };
     });
 
-
-  const scrollTo = (id: string) => {
-    const targetId = id.toLowerCase().replace(" ", "");
-    const element = document.querySelector(
-      targetId.startsWith("#") ? targetId : `#${targetId}`,
-    );
-    element?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (href: string) => {
+    if (pathname !== "/") {
+      if (href === "#hero" || href === "#top") {
+        router.push("/");
+      } else {
+        router.push("/" + href);
+      }
+    } else {
+      if (href === "#hero" || href === "#top") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
   };
 
   return (
@@ -59,6 +72,7 @@ export default function Footer() {
           {/* LOGO COLUMN */}
           <div className="flex-shrink-0">
             <div
+              onClick={() => scrollTo("#hero")}
               style={{
                 transition: "transform 0.3s ease, filter 0.3s ease",
                 cursor: "pointer",
@@ -87,7 +101,7 @@ export default function Footer() {
             <Typography
               variant="b2"
               style={{
-                color: "#666",
+                color: "rgba(255,255,255,0.6)",
                 marginBottom: "2.5rem",
                 display: "block",
                 lineHeight: "1.8",
@@ -97,14 +111,13 @@ export default function Footer() {
               {content.description}
             </Typography>
 
-
             <div className="flex justify-center lg:justify-start gap-6">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   style={{
-                    color: "#444",
+                    color: "rgba(255,255,255,0.5)",
                     transition: "all 0.3s cubic-bezier(0.19, 1, 0.22, 1)",
                     display: "flex",
                     alignItems: "center",
@@ -116,7 +129,7 @@ export default function Footer() {
                       "scale(1.25) translateY(-2px)";
                   }}
                   onMouseLeave={(e: React.MouseEvent<HTMLElement>) => {
-                    e.currentTarget.style.color = "#444";
+                    e.currentTarget.style.color = "rgba(255,255,255,0.5)";
                     e.currentTarget.style.transform = "scale(1) translateY(0)";
                   }}
                 >
@@ -126,61 +139,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* GAME PARTNERS COLUMN */}
-          <div className="flex-shrink-0 mt-4 flex flex-col items-center lg:items-start">
-            <Typography
-              variant="h6"
-              style={{
-                color: "#fff",
-                marginBottom: "2rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                fontSize: "0.8rem",
-                letterSpacing: "0.15em",
-                fontWeight: 900,
-              }}
-            >
-              <span
-                style={{ width: "4px", height: "4px", background: "var(--accent-red)" }}
-              />
-              GAME PARTNERS
-            </Typography>
-            <nav className="flex flex-col items-center lg:items-start gap-5">
-              {content.partners.map((partner) => (
-                  <Typography
-                    key={partner}
-                    variant="b2"
-                    style={{
-                      color: "#555",
-                      fontSize: "0.85rem",
-                      fontWeight: 400,
-                      transition: "all 0.3s ease",
-                      cursor: "pointer",
-                      display: "block",
-                    }}
-                    onMouseEnter={(e: React.MouseEvent<HTMLElement>) => {
-                      e.currentTarget.style.color = "var(--accent-red)";
-                      e.currentTarget.style.transform = "translateX(8px)";
-                    }}
-                    onMouseLeave={(e: React.MouseEvent<HTMLElement>) => {
-                      e.currentTarget.style.color = "#555";
-                      e.currentTarget.style.transform = "translateX(0)";
-                    }}
-                  >
-                    {partner}
-                  </Typography>
-                ),
-              )}
-            </nav>
-          </div>
-
           {/* STUDIO COLUMN */}
           <div className="flex-shrink-0 mt-4 flex flex-col items-center lg:items-start">
             <Typography
               variant="h6"
               style={{
-                color: "#fff",
+                color: "var(--color-white)",
                 marginBottom: "2rem",
                 display: "flex",
                 alignItems: "center",
@@ -191,7 +155,11 @@ export default function Footer() {
               }}
             >
               <span
-                style={{ width: "4px", height: "4px", background: "var(--accent-red)" }}
+                style={{
+                  width: "4px",
+                  height: "4px",
+                  background: "var(--accent-red)",
+                }}
               />
               STUDIO
             </Typography>
@@ -199,39 +167,37 @@ export default function Footer() {
               {content.studioLinks.map((link) => {
                 let targetId = "#hero";
                 if (link === "Our Games") targetId = "#games";
-                if (link === "Join Us") targetId = "#about";
+                if (link === "Join Us") targetId = "#studio";
 
                 return (
-                <button
-                  key={link}
-                  onClick={() =>
-                    scrollTo(targetId)
-                  }
-                  onMouseEnter={(e: React.MouseEvent<HTMLElement>) => {
-                    e.currentTarget.style.color = "var(--accent-red)";
-                    e.currentTarget.style.transform = "translateX(10px)";
-                  }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLElement>) => {
-                    e.currentTarget.style.color = "#555";
-                    e.currentTarget.style.transform = "translateX(0)";
-                  }}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "#555",
-                    textAlign: "left",
-                    padding: 0,
-                    transition: "all 0.3s cubic-bezier(0.19, 1, 0.22, 1)",
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.85rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  {link}
-                </button>
+                  <button
+                    key={link}
+                    onClick={() => scrollTo(targetId)}
+                    onMouseEnter={(e: React.MouseEvent<HTMLElement>) => {
+                      e.currentTarget.style.color = "var(--accent-red)";
+                      e.currentTarget.style.transform = "translateX(5px)";
+                    }}
+                    onMouseLeave={(e: React.MouseEvent<HTMLElement>) => {
+                      e.currentTarget.style.color = "rgba(255,255,255,0.5)";
+                      e.currentTarget.style.transform = "translateX(0)";
+                    }}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      color: "rgba(255,255,255,0.5)",
+                      textAlign: "left",
+                      padding: 0,
+                      transition: "all 0.3s cubic-bezier(0.19, 1, 0.22, 1)",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "0.85rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    {link}
+                  </button>
                 );
               })}
             </nav>
@@ -251,7 +217,7 @@ export default function Footer() {
           <Typography
             variant="b4"
             style={{
-              color: "#333",
+              color: "rgba(255,255,255,0.6)",
               fontSize: "0.75rem",
               letterSpacing: "0.1em",
             }}
@@ -259,29 +225,29 @@ export default function Footer() {
             {content.copyright}
           </Typography>
 
-          <div style={{ display: "flex", gap: "2.5rem" }}>
+          {/* <div style={{ display: "flex", gap: "2.5rem" }}>
             {content.legalLinks.map((text) => (
               <Typography
                 key={text}
                 variant="b4"
                 style={{
-                  color: "#222",
+                  color: "rgba(255,255,255,0.55)",
                   letterSpacing: "0.1em",
                   fontSize: "0.7rem",
                   cursor: "pointer",
                   transition: "color 0.2s ease",
                 }}
                 onMouseEnter={(e: React.MouseEvent<HTMLElement>) =>
-                  (e.currentTarget.style.color = "#444")
+                  (e.currentTarget.style.color = "var(--text-low-contrast)")
                 }
                 onMouseLeave={(e: React.MouseEvent<HTMLElement>) =>
-                  (e.currentTarget.style.color = "#222")
+                  (e.currentTarget.style.color = "rgba(255,255,255,0.55)")
                 }
               >
                 {text}
               </Typography>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

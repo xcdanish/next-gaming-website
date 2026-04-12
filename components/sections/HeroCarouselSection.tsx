@@ -1,50 +1,44 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
-import { SectionBadge } from "@ui-elements/SectionBadge";
 import { CyberButton } from "@ui-elements/CyberButton";
-
-
 import { Typography } from "@ui-elements/Typography";
+import { heroDefaults } from "@lib/hero-data";
 
-import { heroDefaults } from "@/lib/content";
-import { useSound } from "@/components/providers/SoundProvider";
-
-interface HeroSectionProps {
+interface HeroCarouselSectionProps {
   title1?: string;
   title2?: string;
   subtitle?: string;
   description?: string;
-  video?: string;
-  poster?: string;
+  images?: string[];
   buttonTitle?: string;
   onButtonClick?: () => void;
 }
 
-export default function HeroSection({
+export default function HeroCarouselSection({
   title1 = heroDefaults.title1,
   title2 = heroDefaults.title2,
   subtitle = heroDefaults.subtitle,
   description = heroDefaults.description,
-  video = heroDefaults.video,
-  poster = heroDefaults.poster,
+  images = [heroDefaults.poster], // fallback if no images provided
   buttonTitle = heroDefaults.buttonTitle,
   onButtonClick,
-}: HeroSectionProps) {
-
-  const { isMuted } = useSound();
-  const videoRef = useRef<HTMLVideoElement>(null);
+}: HeroCarouselSectionProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
+  // Carousel auto-advance
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
-      videoRef.current.play().catch((err) => console.warn("Video auto-play prevented:", err));
-    }
-  }, [isMuted, video]);
+    if (!images || images.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000); // changes image every 5 seconds
+    return () => clearInterval(interval);
+  }, [images]);
 
+  // Text animation on mount
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (titleRef.current) {
@@ -63,7 +57,7 @@ export default function HeroSection({
       }
     });
     return () => ctx.revert();
-  }, []);
+  }, [title1, title2]);
 
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
@@ -71,25 +65,23 @@ export default function HeroSection({
 
   return (
     <section
-      id="hero"
+      id="hero-carousel"
       className="relative w-full min-h-screen overflow-hidden flex items-center md:items-end p-0 bg-[var(--bg-primary)]"
     >
-      {/* BG Video */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted // KEEP THIS STATIC. Mobile browsers require the raw HTML muted attribute for autoplay.
-        loop
-        key={video}
-        playsInline
-        preload="auto"
-        poster={poster}
-        className="absolute inset-0 w-full h-full object-cover"
-        aria-hidden="true"
-        style={{ filter: "brightness(0.65)" }}
-      >
-        <source src={video} type="video/mp4" />
-      </video>
+      {/* BG Carousel Images */}
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={currentIndex}
+          src={images[currentIndex]}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+          style={{ filter: "brightness(0.65)", objectPosition: "center" }}
+        />
+      </AnimatePresence>
 
       {/* Giant Background Branding Text */}
       <div
@@ -149,8 +141,6 @@ export default function HeroSection({
         }}
       >
         {/* Badge */}
-        <SectionBadge>Cinematic Masterpiece Experience</SectionBadge>
-
         <Typography
           variant="h1"
           id="hero-title"
@@ -171,7 +161,7 @@ export default function HeroSection({
           >
             {title1.split("").map((char, i) => (
               <span
-                key={i}
+                key={`title1-${i}`}
                 className="char"
                 style={{ display: "inline-block" }}
               >
@@ -190,7 +180,7 @@ export default function HeroSection({
           >
             {title2.split("").map((char, i) => (
               <span
-                key={i}
+                key={`title2-${i}`}
                 className="char"
                 style={{ display: "inline-block" }}
               >
@@ -241,48 +231,34 @@ export default function HeroSection({
         >
           <CyberButton
             style={{ width: "auto" }}
-            onClick={onButtonClick || (() => scrollTo("#notify"))}
+            onClick={onButtonClick || (() => scrollTo("#game-intro"))}
           >
-            {buttonTitle}
+            Explore More
           </CyberButton>
         </motion.div>
 
-        {/* <CyberButton
-            variant="outline"
-            style={{ width: "auto" }}
-            onClick={() => scrollTo("#about-game")}
+        {/* Optional Carousel Indicators */}
+        {images.length > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5 }}
+            className="flex gap-2 mt-8"
           >
-            Learn More
-          </CyberButton> */}
-
-
-
-        {/* Stats */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ delay: 1.6, duration: 0.55 }}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "2.5rem",
-            marginTop: "3.5rem",
-            paddingTop: "1.75rem",
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
-          {stats.map((s, i) => (
-            <StatItem
-              key={s.label}
-              num={s.num}
-              label={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6 + i * 0.1, duration: 0.55 }}
-            />
-          ))}
-        </motion.div> */}
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`w-12 h-1 rounded-full transition-all duration-300 ${
+                  i === currentIndex
+                    ? "bg-[var(--accent-red)]"
+                    : "bg-white/20 hover:bg-white/40"
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </motion.div>
+        )}
       </div>
 
       {/* Scroll indicator */}
@@ -298,7 +274,7 @@ export default function HeroSection({
           flexDirection: "column",
           alignItems: "center",
           gap: "0.4rem",
-          color: "#444",
+          color: "var(--text-low-contrast)",
           fontSize: "0.6rem",
           letterSpacing: "0.2em",
           textTransform: "uppercase",
@@ -308,7 +284,7 @@ export default function HeroSection({
       >
         <Typography
           variant="caption"
-          style={{ color: "#444", fontSize: "0.6rem" }}
+          style={{ color: "var(--text-low-contrast)", fontSize: "0.6rem" }}
         >
           Scroll
         </Typography>
@@ -318,7 +294,8 @@ export default function HeroSection({
           style={{
             width: 1,
             height: 32,
-            background: "linear-gradient(to bottom, var(--accent-red), transparent)",
+            background:
+              "linear-gradient(to bottom, var(--accent-red), transparent)",
           }}
         />
       </motion.div>

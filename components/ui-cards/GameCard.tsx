@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Variants } from "framer-motion";
-import { Card, CardImage, CardTag, CardContentOverlay } from "./Card";
+import { Card, CardImage, CardContentOverlay } from "./Card";
 import { CyberButton } from "@ui-elements/CyberButton";
 import { Typography } from "@ui-elements/Typography";
 
@@ -15,7 +15,6 @@ interface GameCardProps {
     genre: string;
     description: string;
     image: string;
-    tag: string;
     rating: string;
     platforms: string[];
     buttonTitle: string;
@@ -39,7 +38,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, variants }) => {
       whileHover={{
         scale: 1.05,
         y: -12,
-        backgroundColor: "#1b1b1b",
+        backgroundColor: "var(--color-gray-darker)",
         transition: {
           type: "spring",
           stiffness: 400,
@@ -74,7 +73,10 @@ export const GameCard: React.FC<GameCardProps> = ({ game, variants }) => {
         >
           {game.genre}
         </Typography>
-        <Typography variant="h5" style={{ color: "var(--text-primary)", lineHeight: 1.1 }}>
+        <Typography
+          variant="h5"
+          style={{ color: "var(--text-primary)", lineHeight: 1.1 }}
+        >
           {game.title}
         </Typography>
       </CardContentOverlay>
@@ -93,7 +95,11 @@ export const GameCard: React.FC<GameCardProps> = ({ game, variants }) => {
         </Typography>
         <Typography
           variant="h4"
-          style={{ color: "#fff", marginBottom: "0.75rem", lineHeight: 1.1 }}
+          style={{
+            color: "var(--color-white)",
+            marginBottom: "0.75rem",
+            lineHeight: 1.1,
+          }}
         >
           {game.title}
         </Typography>
@@ -127,7 +133,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, variants }) => {
                 padding: "0.2rem 0.6rem",
                 background: "rgba(255,255,255,0.05)",
                 border: "1px solid rgba(255,255,255,0.1)",
-                color: "#999",
+                color: "var(--text-muted-alt)",
                 borderRadius: "2px",
               }}
             >

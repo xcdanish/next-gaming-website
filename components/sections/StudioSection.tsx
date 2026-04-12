@@ -4,12 +4,12 @@ import Image from "next/image";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { Typography } from "@ui-elements/Typography";
+import { SectionHeader } from "@ui-elements/SectionHeader";
 import { MapPin, Gamepad2 } from "lucide-react";
 
-import { studioContent } from "@/lib/content";
+import { studioContent } from "@lib/studio-data";
 
 const TimelineMarker = () => {
-
   return (
     <div
       style={{ position: "absolute", left: "-0.5rem", top: "1rem", zIndex: 10 }}
@@ -49,7 +49,7 @@ export default function StudioSection() {
 
   return (
     <section
-      id="about"
+      id="studio"
       ref={containerRef}
       style={{
         padding: "10rem 0 12rem", // Increased padding
@@ -68,22 +68,22 @@ export default function StudioSection() {
           transition={{ duration: 0.8 }}
           style={{ marginBottom: "6rem" }} // Increased margin
         >
-          <Typography
-            variant="h2"
-            style={{
-              color: "var(--accent-red)",
-              marginBottom: "0.5rem",
-              letterSpacing: "0.1em",
-            }}
-          >
-            {studioContent.heading}
-          </Typography>
-          <Typography
-            variant="h3"
-            style={{ opacity: 0.9, letterSpacing: "0.05em" }}
-          >
-            {studioContent.subheading}
-          </Typography>
+          <SectionHeader showDivider={false}>
+            <Typography variant="span" className="cyber-sweep">
+              THE
+            </Typography>{" "}
+            <Typography variant="span" className="cyber-sweep-red">
+              REDDEVIL
+            </Typography>
+            <br />
+            <Typography
+              variant="span"
+              className="cyber-sweep"
+              style={{ fontSize: "0.6em", opacity: 0.8 }}
+            >
+              {studioContent.subheading}
+            </Typography>
+          </SectionHeader>
         </motion.div>
 
         {/* Timeline Path */}
@@ -136,7 +136,7 @@ export default function StudioSection() {
                   flex: "0 0 auto",
                   width: "160px",
                   height: "160px",
-                  background: "#121212",
+                  background: "var(--color-gray-dark)",
                   borderRadius: "12px",
                   display: "flex",
                   alignItems: "center",
@@ -288,17 +288,17 @@ export default function StudioSection() {
               transition={{ duration: 0.8, delay: 0.3 }}
               style={{ paddingLeft: "1.5rem" }} // Add space from the timeline circle
             >
-              <Typography
-                variant="h2"
-                style={{
-                  marginBottom: "4.5rem",
-                  color: "var(--accent-red)",
-                  letterSpacing: "0.08em",
-                  fontWeight: 900,
-                }}
+              <SectionHeader
+                showDivider={false}
+                style={{ marginBottom: "4.5rem" }}
               >
-                CORE TEAM MEMBERS
-              </Typography>
+                <Typography variant="span" className="cyber-sweep">
+                  CORE
+                </Typography>{" "}
+                <Typography variant="span" className="cyber-sweep-red">
+                  TEAM MEMBERS
+                </Typography>
+              </SectionHeader>
 
               <div
                 style={{
@@ -310,8 +310,6 @@ export default function StudioSection() {
                 }}
                 className="lg:!grid-cols-4" // Force 4 columns on larger screens
               >
-
-
                 {studioContent.team.map((member, i) => (
                   <motion.div
                     key={member.name}
@@ -335,22 +333,35 @@ export default function StudioSection() {
                         justifyContent: "center",
                       }}
                     >
-                      <div
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          background: `radial-gradient(circle at 50% 50%, ${member.color}22, #000)`,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: "3rem",
-                          fontWeight: 700,
-                          fontFamily: "var(--font-bebas-neue)",
-                          color: "rgba(var(--color-primary-red-rgb), 0.5)",
-                        }}
-                      >
-                        {member.initials}
-                      </div>
+                      {member.image ? (
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          style={{
+                            objectFit: "cover",
+                            transition: "transform 0.5s ease",
+                          }}
+                          className="group-hover:scale-110"
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            background: `radial-gradient(circle at 50% 50%, ${member.color}22, var(--color-black-pure))`,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: "3rem",
+                            fontWeight: 700,
+                            fontFamily: "var(--font-bebas-neue)",
+                            color: "rgba(var(--color-primary-red-rgb), 0.5)",
+                          }}
+                        >
+                          {member.initials}
+                        </div>
+                      )}
                       <div
                         style={{
                           position: "absolute",
@@ -363,7 +374,10 @@ export default function StudioSection() {
                         }}
                       />
                     </div>
-                    <Typography variant="h6" style={{ color: "var(--text-primary)" }}>
+                    <Typography
+                      variant="h6"
+                      style={{ color: "var(--text-primary)" }}
+                    >
                       {member.name}
                     </Typography>
                     <Typography

@@ -159,7 +159,9 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
     };
 
     // Use motion component by indexing with a safe fallback
-    const MotionComponent = (motion as unknown as Record<string, React.ElementType>)[targetTag] || motion.p;
+    const MotionComponent =
+      (motion as unknown as Record<string, React.ElementType>)[targetTag] ||
+      motion.p;
 
     return (
       <MotionComponent

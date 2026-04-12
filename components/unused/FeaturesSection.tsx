@@ -37,8 +37,12 @@ export default function FeaturesSection() {
         style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
       >
         <SectionHeader>
-          <Typography variant="span" className="cyber-sweep">KEY</Typography>{" "}
-          <Typography variant="span" className="cyber-sweep-red">FEATURES</Typography>
+          <Typography variant="span" className="cyber-sweep">
+            KEY
+          </Typography>{" "}
+          <Typography variant="span" className="cyber-sweep-red">
+            FEATURES
+          </Typography>
         </SectionHeader>
 
         {/* Features Grid - Desktop: 4 columns, Mobile: 2x2 as per requirement */}

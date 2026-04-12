@@ -38,9 +38,13 @@ const reviews = [
 
 export default function BlogSection() {
   return (
-    <section id="blog" style={{ padding: "6rem 0", backgroundColor: "var(--bg-primary)" }}>
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}>
-
+    <section
+      id="blog"
+      style={{ padding: "6rem 0", backgroundColor: "var(--bg-primary)" }}
+    >
+      <div
+        style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,9 +54,17 @@ export default function BlogSection() {
         >
           <div style={{ width: "fit-content", marginBottom: "2.5rem" }}>
             <Typography variant="h2" style={{ marginBottom: "0.75rem" }}>
-              <Typography variant="span" className="cyber-sweep">GAME</Typography> <Typography variant="span" className="cyber-sweep-red">REVIEWS</Typography>
+              <Typography variant="span" className="cyber-sweep">
+                GAME
+              </Typography>{" "}
+              <Typography variant="span" className="cyber-sweep-red">
+                REVIEWS
+              </Typography>
             </Typography>
-            <div className="section-divider" style={{ width: "100%", marginBottom: 0 }} />
+            <div
+              className="section-divider"
+              style={{ width: "100%", marginBottom: 0 }}
+            />
           </div>
           <Typography
             variant="b2"
@@ -64,7 +76,8 @@ export default function BlogSection() {
               textTransform: "none",
             }}
           >
-            Built with precision. Validated by players. Don&apos;t just take our word for it—listen to our global community.
+            Built with precision. Validated by players. Don&apos;t just take our
+            word for it—listen to our global community.
           </Typography>
         </motion.div>
 
@@ -81,7 +94,8 @@ export default function BlogSection() {
                 background: "var(--bg-card)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 borderRadius: "2px",
-                display: "flex", flexDirection: "column",
+                display: "flex",
+                flexDirection: "column",
                 transition: "border-color 0.25s ease",
               }}
             >

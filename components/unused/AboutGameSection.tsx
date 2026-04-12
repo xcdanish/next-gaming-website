@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@ui-elements/SectionHeader";
 import { Typography } from "@ui-elements/Typography";
-import { aboutGameContent as content } from "@/lib/content";
+import { aboutGameContent as content } from "@lib/about-game-data";
 
 export default function AboutGameSection() {
   return (
@@ -40,11 +40,13 @@ export default function AboutGameSection() {
               transition={{ duration: 0.7, delay: 0.05, ease: "easeOut" }}
               whileHover={{
                 y: -10,
-                filter: "drop-shadow(0 0 30px rgba(var(--color-primary-red-rgb), 0.22))",
+                filter:
+                  "drop-shadow(0 0 30px rgba(var(--color-primary-red-rgb), 0.22))",
               }}
               className="absolute bottom-0 left-0 md:-left-[5%] w-[48%] md:w-[45%] z-[2]"
               style={{
-                filter: "drop-shadow(0px 10px 16px rgba(0,0,0,0.85)) drop-shadow(0 0 10px rgba(var(--color-primary-red-rgb), 0.1))",
+                filter:
+                  "drop-shadow(0px 10px 16px rgba(0,0,0,0.85)) drop-shadow(0 0 10px rgba(var(--color-primary-red-rgb), 0.1))",
                 transition: "filter 0.4s cubic-bezier(0.19, 1, 0.22, 1)",
               }}
             >
@@ -65,11 +67,13 @@ export default function AboutGameSection() {
               transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
               whileHover={{
                 y: -14,
-                filter: "drop-shadow(0 0 45px rgba(var(--color-primary-red-rgb), 0.3))",
+                filter:
+                  "drop-shadow(0 0 45px rgba(var(--color-primary-red-rgb), 0.3))",
               }}
               className="absolute bottom-0 left-[35%] md:left-[30%] w-[65%] sm:w-[55%] md:w-[65%] z-[4]"
               style={{
-                filter: "drop-shadow(0px 14px 24px rgba(0,0,0,0.9)) drop-shadow(0 0 15px rgba(var(--color-primary-red-rgb), 0.15))",
+                filter:
+                  "drop-shadow(0px 14px 24px rgba(0,0,0,0.9)) drop-shadow(0 0 15px rgba(var(--color-primary-red-rgb), 0.15))",
                 transition: "filter 0.4s cubic-bezier(0.19, 1, 0.22, 1)",
               }}
             >
@@ -140,12 +144,13 @@ export default function AboutGameSection() {
                     variant="span"
                     style={{
                       background:
-                        "linear-gradient(90deg, #ff3b3b 0%, var(--accent-red) 40%, #c0000a 100%)",
+                        "linear-gradient(90deg, var(--color-accent-light) 0%, var(--accent-red) 40%, var(--color-accent-deep) 100%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
                       fontWeight: 900,
-                      filter: "drop-shadow(0 0 10px rgba(var(--color-primary-red-rgb), 0.25))",
+                      filter:
+                        "drop-shadow(0 0 10px rgba(var(--color-primary-red-rgb), 0.25))",
                     }}
                   >
                     {content.title2}
@@ -154,7 +159,7 @@ export default function AboutGameSection() {
               </SectionHeader>
 
               {/* char-3: inline, same height as the title */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, x: 20, y: 8 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
@@ -175,7 +180,7 @@ export default function AboutGameSection() {
                   height={200}
                   style={{ height: "100%", width: "auto", display: "block" }}
                 />
-              </motion.div>
+              </motion.div> */}
             </div>
 
             <div
@@ -189,7 +194,10 @@ export default function AboutGameSection() {
                 {content.description1}
               </Typography>
 
-              <Typography variant="b2" style={{ color: "var(--text-secondary)" }}>
+              <Typography
+                variant="b2"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 {content.description2}
               </Typography>
 
@@ -207,8 +215,14 @@ export default function AboutGameSection() {
                     variant="caption"
                     style={{
                       padding: "0.5rem 1rem",
-                      background: i === content.tags.length - 1 ? "rgba(var(--color-primary-red-rgb), 0.1)" : "rgba(255,255,255,0.05)",
-                      border: i === content.tags.length - 1 ? "1px solid rgba(var(--color-primary-red-rgb), 0.2)" : "1px solid rgba(255,255,255,0.1)",
+                      background:
+                        i === content.tags.length - 1
+                          ? "rgba(var(--color-primary-red-rgb), 0.1)"
+                          : "rgba(255,255,255,0.05)",
+                      border:
+                        i === content.tags.length - 1
+                          ? "1px solid rgba(var(--color-primary-red-rgb), 0.2)"
+                          : "1px solid rgba(255,255,255,0.1)",
                       borderRadius: "2px",
                       color: "var(--text-primary)",
                     }}
@@ -226,7 +240,6 @@ export default function AboutGameSection() {
               </Typography>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>

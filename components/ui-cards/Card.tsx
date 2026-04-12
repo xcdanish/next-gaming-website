@@ -80,7 +80,8 @@ export const CardTag: React.FC<{
         style={{
           fontSize: variant === "default" ? "0.65rem" : "0.7rem",
           fontWeight: 700,
-          background: variant === "default" ? "rgba(0,0,0,0.7)" : "var(--accent-red)",
+          background:
+            variant === "default" ? "rgba(0,0,0,0.7)" : "var(--accent-red)",
           backdropFilter: variant === "default" ? "blur(6px)" : "none",
           padding: "0.25rem 0.65rem",
           borderRadius: "2px",

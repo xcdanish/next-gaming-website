@@ -62,7 +62,12 @@ export default function CareersSection() {
         >
           <div style={{ width: "fit-content", marginBottom: "2.5rem" }}>
             <Typography variant="h2" style={{ marginBottom: "0.75rem" }}>
-              <Typography variant="span" className="cyber-sweep">JOIN THE</Typography> <Typography variant="span" className="cyber-sweep-red">REBELLION</Typography>
+              <Typography variant="span" className="cyber-sweep">
+                JOIN THE
+              </Typography>{" "}
+              <Typography variant="span" className="cyber-sweep-red">
+                REBELLION
+              </Typography>
             </Typography>
             <div
               className="section-divider"
@@ -76,7 +81,7 @@ export default function CareersSection() {
               color: "var(--text-secondary)",
               maxWidth: "34rem",
               lineHeight: 1.7,
-              textTransform: "none"
+              textTransform: "none",
             }}
           >
             We&apos;re not looking for employees. We&apos;re looking for
@@ -109,7 +114,10 @@ export default function CareersSection() {
               }}
             >
               <div style={{ fontSize: "2rem" }}>{p.icon}</div>
-              <Typography variant="caption" style={{ color: "var(--text-secondary)" }}>
+              <Typography
+                variant="caption"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 {p.text}
               </Typography>
             </div>
@@ -170,15 +178,23 @@ export default function CareersSection() {
                   >
                     {job.dept}
                   </Typography>
-                  <Typography variant="b4" style={{ color: "#666" }}>
+                  <Typography
+                    variant="b4"
+                    style={{ color: "var(--text-muted)" }}
+                  >
                     {job.type}
                   </Typography>
-                  <Typography variant="b4" style={{ color: "#666" }}>
+                  <Typography
+                    variant="b4"
+                    style={{ color: "var(--text-muted)" }}
+                  >
                     {job.location}
                   </Typography>
                 </div>
               </div>
-              <CyberButton style={{ fontSize: "0.75rem", padding: "0.6rem 1.25rem" }}>
+              <CyberButton
+                style={{ fontSize: "0.75rem", padding: "0.6rem 1.25rem" }}
+              >
                 Apply Now
               </CyberButton>
             </motion.div>

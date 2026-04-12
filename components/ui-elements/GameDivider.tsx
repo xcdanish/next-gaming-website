@@ -15,22 +15,22 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
       initial={{ opacity: 0, scaleX: 0 }}
       whileInView={{ opacity: 1, scaleX: 1 }}
       viewport={{ once: false, amount: 0.5 }}
-      transition={{ duration: 0.65, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
       style={{
         display: "flex",
         alignItems: "center",
         marginTop: `${mt}rem`,
         marginBottom: `${mb}rem`,
-        transformOrigin: "left center",
+        transformOrigin: "center",
         height: "16px",
       }}
     >
       {/* ◆ Left diamond */}
       <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
+        initial={{ scale: 0, opacity: 0, rotate: 0 }}
+        whileInView={{ scale: 1, opacity: 1, rotate: 45 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.35, delay: 0.45, ease: "backOut" }}
+        transition={{ duration: 0.5, delay: 0.4, ease: "backOut" }}
         style={{
           flexShrink: 0,
           display: "flex",
@@ -43,8 +43,8 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
             width: "10px",
             height: "10px",
             background: "var(--accent-red)",
-            transform: "rotate(45deg)",
-            boxShadow: "0 0 10px rgba(var(--color-primary-red-rgb), 1), 0 0 20px rgba(var(--color-primary-red-rgb), 0.5)",
+            boxShadow:
+              "0 0 10px rgba(var(--color-primary-red-rgb), 1), 0 0 20px rgba(var(--color-primary-red-rgb), 0.5)",
           }}
         />
       </motion.div>
@@ -66,7 +66,8 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
           height: "1px",
           width: "28px",
           flexShrink: 0,
-          background: "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.55), rgba(var(--color-primary-red-rgb), 0.08))",
+          background:
+            "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.55), rgba(var(--color-primary-red-rgb), 0.08))",
         }}
       />
 
@@ -75,7 +76,8 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
         style={{
           height: "1px",
           flex: 1,
-          background: "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.08), rgba(var(--color-primary-red-rgb), 0.18), rgba(var(--color-primary-red-rgb), 0.08))",
+          background:
+            "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.08), rgba(var(--color-primary-red-rgb), 0.18), rgba(var(--color-primary-red-rgb), 0.08))",
         }}
       />
 
@@ -85,7 +87,8 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
           height: "1px",
           width: "28px",
           flexShrink: 0,
-          background: "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.08), rgba(var(--color-primary-red-rgb), 0.55))",
+          background:
+            "linear-gradient(90deg, rgba(var(--color-primary-red-rgb), 0.08), rgba(var(--color-primary-red-rgb), 0.55))",
         }}
       />
 
@@ -102,10 +105,10 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
 
       {/* ◆ Right diamond */}
       <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
+        initial={{ scale: 0, opacity: 0, rotate: 0 }}
+        whileInView={{ scale: 1, opacity: 1, rotate: 45 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.35, delay: 0.6, ease: "backOut" }}
+        transition={{ duration: 0.5, delay: 0.4, ease: "backOut" }}
         style={{
           flexShrink: 0,
           display: "flex",
@@ -118,8 +121,8 @@ export function GameDivider({ mt = 0.75, mb = 0.75 }: GameDividerProps) {
             width: "10px",
             height: "10px",
             background: "var(--accent-red)",
-            transform: "rotate(45deg)",
-            boxShadow: "0 0 10px rgba(var(--color-primary-red-rgb), 1), 0 0 20px rgba(var(--color-primary-red-rgb), 0.5)",
+            boxShadow:
+              "0 0 10px rgba(var(--color-primary-red-rgb), 1), 0 0 20px rgba(var(--color-primary-red-rgb), 0.5)",
           }}
         />
       </motion.div>

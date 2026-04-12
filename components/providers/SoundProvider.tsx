@@ -9,7 +9,9 @@ interface SoundContextType {
 
 const SoundContext = createContext<SoundContextType | undefined>(undefined);
 
-export const SoundProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SoundProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [isMuted, setIsMuted] = useState(true);
 
   return (

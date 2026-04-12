@@ -5,10 +5,9 @@ import { SectionHeader } from "@ui-elements/SectionHeader";
 import { GameCard } from "@ui-cards/GameCard";
 import { Typography } from "@ui-elements/Typography";
 
-import { games } from "@/lib/games-data";
+import { games } from "@lib/games-data";
 
-
-import { gamesSectionContent as content } from "@/lib/content";
+import { gamesSectionContent as content } from "@lib/games-section-data";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -23,7 +22,11 @@ export default function GamesSection() {
   return (
     <section
       id="games"
-      style={{ padding: "8rem 0", backgroundColor: "var(--bg-primary)", border: "none" }}
+      style={{
+        padding: "8rem 0",
+        backgroundColor: "var(--bg-primary)",
+        border: "none",
+      }}
     >
       <div
         style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
@@ -55,7 +58,6 @@ export default function GamesSection() {
         >
           {content.description}
         </Typography>
-
 
         {/* Grid */}
         <motion.div

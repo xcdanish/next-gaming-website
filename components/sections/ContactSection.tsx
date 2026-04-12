@@ -5,18 +5,35 @@ import { motion } from "framer-motion";
 import { Typography } from "@ui-elements/Typography";
 import { CyberButton } from "@ui-elements/CyberButton";
 
-import { contactContent as content } from "@/lib/content";
-import { MailIcon, PhoneIcon, MapPinIcon } from "@/components/icons";
+import { contactContent as content } from "@lib/contact-data";
+import {
+  InstagramIcon,
+  XIcon,
+  LinkedinIcon,
+  YoutubeIcon,
+  DiscordIcon,
+  MailIcon,
+  PhoneIcon,
+  MapPinIcon,
+} from "@components/icons";
+import { socialLinks as socialData } from "@lib/social-data";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
   Mail: MailIcon,
   Phone: PhoneIcon,
   MapPin: MapPinIcon,
+  Instagram: InstagramIcon,
+  X: XIcon,
+  LinkedIn: LinkedinIcon,
+  YouTube: YoutubeIcon,
+  Discord: DiscordIcon,
 };
 
 export default function ContactSection() {
-
-
+  const socialLinks = socialData.map((link) => ({
+    ...link,
+    icon: iconMap[link.label] || null,
+  }));
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -34,12 +51,14 @@ export default function ContactSection() {
     setSubmitted(true);
   };
 
-
-
   return (
     <section
       id="contact"
-      style={{ padding: "6rem 0", backgroundColor: "var(--bg-primary)", border: "none" }}
+      style={{
+        padding: "6rem 0",
+        backgroundColor: "var(--bg-primary)",
+        border: "none",
+      }}
     >
       <div
         style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
@@ -69,7 +88,7 @@ export default function ContactSection() {
             <Typography
               variant="b2"
               style={{
-                color: "var(--text-secondary)",
+                color: "var(--text-primary)",
                 lineHeight: 1.75,
                 marginBottom: "2.5rem",
                 textTransform: "none",
@@ -120,7 +139,7 @@ export default function ContactSection() {
                     <Typography
                       variant="caption"
                       style={{
-                        color: "#555",
+                        color: "var(--text-primary)",
                         marginBottom: "0.2rem",
                       }}
                     >
@@ -140,29 +159,37 @@ export default function ContactSection() {
               ))}
             </div>
 
-            <div style={{ display: "flex", gap: "1.5rem" }}>
-              {content.socials.map((s) => (
-                <Typography
-                  component="button"
-                  key={s}
-                  variant="caption"
-                  style={{
-                    color: "#555",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    transition: "color 0.2s ease",
-                  }}
-                  onMouseEnter={(e: React.MouseEvent<HTMLElement>) =>
-                    (e.currentTarget.style.color = "var(--accent-red)")
-                  }
-                  onMouseLeave={(e: React.MouseEvent<HTMLElement>) =>
-                    (e.currentTarget.style.color = "#555")
-                  }
-                >
-                  {s}
-                </Typography>
-              ))}
+            <div style={{ display: "flex", gap: "1rem" }}>
+              {socialLinks.map((social) => {
+                const Icon = social.icon as React.ComponentType<{ size?: number }>;
+                return (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{
+                      scale: 1.1,
+                      color: "var(--accent-red)",
+                      y: -3,
+                    }}
+                    style={{
+                      width: "2.5rem",
+                      height: "2.5rem",
+                      background: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      borderRadius: "4px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--text-primary)",
+                      transition: "all 0.3s cubic-bezier(0.19, 1, 0.22, 1)",
+                    }}
+                  >
+                    {Icon && <Icon size={18} />}
+                  </motion.a>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -191,7 +218,10 @@ export default function ContactSection() {
                 >
                   {content.successTitle}
                 </Typography>
-                <Typography variant="b2" style={{ color: "var(--text-secondary)" }}>
+                <Typography
+                  variant="b2"
+                  style={{ color: "var(--text-primary)" }}
+                >
                   {content.successMessage}
                 </Typography>
               </motion.div>
@@ -206,7 +236,10 @@ export default function ContactSection() {
               >
                 <div className="grid-2col" style={{ gap: "1rem" }}>
                   <div className="group flex flex-col">
-                    <label htmlFor="c-name" className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white">
+                    <label
+                      htmlFor="c-name"
+                      className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-white mb-2 transition-colors group-focus-within:text-[var(--accent-red)]"
+                    >
                       Name
                     </label>
                     <input
@@ -218,11 +251,14 @@ export default function ContactSection() {
                       onChange={(e) =>
                         setForm({ ...form, name: e.target.value })
                       }
-                      className="w-full bg-[#141414] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
+                      className="w-full bg-[var(--bg-card)] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
                     />
                   </div>
                   <div className="group flex flex-col">
-                    <label htmlFor="c-email" className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white">
+                    <label
+                      htmlFor="c-email"
+                      className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-white mb-2 transition-colors group-focus-within:text-[var(--accent-red)]"
+                    >
                       Email
                     </label>
                     <input
@@ -234,13 +270,16 @@ export default function ContactSection() {
                       onChange={(e) =>
                         setForm({ ...form, email: e.target.value })
                       }
-                      className="w-full bg-[#141414] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
+                      className="w-full bg-[var(--bg-card)] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
                     />
                   </div>
                 </div>
 
                 <div className="group flex flex-col">
-                  <label htmlFor="c-subject" className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white">
+                  <label
+                    htmlFor="c-subject"
+                    className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white"
+                  >
                     Subject
                   </label>
                   <input
@@ -252,12 +291,15 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setForm({ ...form, subject: e.target.value })
                     }
-                    className="w-full bg-[#141414] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
+                    className="w-full bg-[var(--bg-card)] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
                   />
                 </div>
 
                 <div className="group flex flex-col">
-                  <label htmlFor="c-message" className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white">
+                  <label
+                    htmlFor="c-message"
+                    className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white"
+                  >
                     Message
                   </label>
                   <textarea
@@ -269,7 +311,7 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setForm({ ...form, message: e.target.value })
                     }
-                    className="w-full bg-[#141414] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
+                    className="w-full bg-[var(--bg-card)] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
                     style={{ resize: "none" }}
                   />
                 </div>
@@ -287,7 +329,6 @@ export default function ContactSection() {
                 >
                   {loading ? "Sending..." : "Send Message"}
                 </CyberButton>
-
               </form>
             )}
           </motion.div>

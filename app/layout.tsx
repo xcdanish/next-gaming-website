@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-import LayoutWrapper from "@/components/custom/LayoutWrapper";
+import LayoutWrapper from "@layout/LayoutWrapper";
 
 export default function RootLayout({
   children,
@@ -61,4 +61,3 @@ export default function RootLayout({
     </html>
   );
 }
-

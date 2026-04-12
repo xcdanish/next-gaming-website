@@ -9,28 +9,28 @@ const team = [
     role: "CEO",
     bio: "Visionary storyteller and founder of Red Devil Studio. Driving the future of immersive play.",
     initials: "JJ",
-    color: "#c01020",
+    color: "var(--color-team-1)",
   },
   {
     name: "MD Saif Ali",
     role: "COO",
     bio: "Ensures operational excellence and production standards are met for every project.",
     initials: "SA",
-    color: "#a00e1c",
+    color: "var(--color-team-2)",
   },
   {
     name: "Vyshnav KS",
     role: "CTO",
     bio: "Technical architect behind our proprietary shaders and advanced gaming systems.",
     initials: "VK",
-    color: "#7a0f18",
+    color: "var(--color-team-3)",
   },
   {
     name: "Sagar Rajpoot",
     role: "CMO",
     bio: "Connecting our stories with a global audience. Expert in community-driven growth.",
     initials: "SR",
-    color: "#c01020",
+    color: "var(--color-team-1)",
   },
 ];
 
@@ -52,8 +52,12 @@ export default function TeamSection() {
         >
           <div style={{ width: "fit-content", marginBottom: "2.5rem" }}>
             <Typography variant="h2" style={{ marginBottom: "0.75rem" }}>
-              <Typography variant="span" className="cyber-sweep">CORE</Typography>{" "}
-              <Typography variant="span" className="cyber-sweep-red">TEAM</Typography>
+              <Typography variant="span" className="cyber-sweep">
+                CORE
+              </Typography>{" "}
+              <Typography variant="span" className="cyber-sweep-red">
+                TEAM
+              </Typography>
             </Typography>
             <div
               className="section-divider"
@@ -67,7 +71,7 @@ export default function TeamSection() {
               color: "var(--text-secondary)",
               maxWidth: "36rem",
               lineHeight: 1.7,
-              textTransform: "none"
+              textTransform: "none",
             }}
           >
             Diverse backgrounds. One obsession. We hire for passion and retain
@@ -99,11 +103,11 @@ export default function TeamSection() {
                   width: "3.5rem",
                   height: "3.5rem",
                   borderRadius: "50%",
-                  background: `radial-gradient(circle at 30% 30%, ${member.color}, #1a0000)`,
+                  background: `radial-gradient(circle at 30% 30%, ${member.color}, var(--color-red-black))`,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#fff",
+                  color: "var(--color-white)",
                   fontSize: "1rem",
                   fontWeight: 700,
                   marginBottom: "1.1rem",

@@ -21,10 +21,13 @@
     ],
     "paths": {
       "@/*": ["./*"],
+      "@lib/*": ["lib/*"],
+      "@app/*": ["app/*"],
       "@sections/*": ["components/sections/*"],
       "@ui-cards/*": ["components/ui-cards/*"],
       "@ui-elements/*": ["components/ui-elements/*"],
-      "@custom/*": ["components/custom/*"]
+      "@components/*": ["components/*"],
+      "@layout/*": ["components/layout/*"]
     }
   },
   "include": [

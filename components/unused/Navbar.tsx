@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Join Us", href: "#about" },
 ];
 
-import { useSound } from "@/components/providers/SoundProvider";
+import { useSound } from "@components/providers/SoundProvider";
 
 export default function Navbar() {
   const { isMuted, setIsMuted } = useSound();
@@ -158,9 +158,7 @@ export default function Navbar() {
         </nav>
 
         {/* ── RIGHT CONTROLS (Always visible, items handle their own responsive display) ── */}
-        <div
-          style={{ display: "flex", alignItems: "center", gap: "1rem" }}
-        >
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           {/* Audio Toggle */}
           <motion.button
             onClick={() => setIsMuted((prev) => !prev)}
@@ -295,69 +293,69 @@ export default function Navbar() {
             </CyberButton>
           </div>
 
-        {/* ── HAMBURGER (visible ONLY on mobile via .nav-hamburger CSS) ── */}
-        <motion.button
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          className="nav-hamburger"
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ backgroundColor: "rgba(255,255,255, 0.05)" }}
-          style={{
-            background: "transparent",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            padding: "0.4rem 0.5rem",
-            flexDirection: "column",
-            gap: "5px",
-            flexShrink: 0,
-            transition: "all 0.3s ease",
-          }}
-        >
-          <span
+          {/* ── HAMBURGER (visible ONLY on mobile via .nav-hamburger CSS) ── */}
+          <motion.button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            className="nav-hamburger"
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ backgroundColor: "rgba(255,255,255, 0.05)" }}
             style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              background: "var(--text-primary)",
-              borderRadius: "1px",
-              transition: "transform 0.25s ease",
-              transformOrigin: "center",
-              transform: menuOpen
-                ? "rotate(45deg) translate(0px, 7px)"
-                : "none",
+              background: "transparent",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              padding: "0.4rem 0.5rem",
+              flexDirection: "column",
+              gap: "5px",
+              flexShrink: 0,
+              transition: "all 0.3s ease",
             }}
-          />
-          <span
-            style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              background: "var(--text-primary)",
-              borderRadius: "1px",
-              transition: "opacity 0.25s ease, transform 0.25s ease",
-              opacity: menuOpen ? 0 : 1,
-              transform: menuOpen ? "scaleX(0)" : "none",
-            }}
-          />
-          <span
-            style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              background: menuOpen
-                ? "var(--accent-red)"
-                : "var(--text-primary)",
-              borderRadius: "1px",
-              transition: "transform 0.25s ease, background 0.3s ease",
-              transformOrigin: "center",
-              transform: menuOpen
-                ? "rotate(-45deg) translate(0px, -7px)"
-                : "none",
-            }}
-          />
-        </motion.button>
+          >
+            <span
+              style={{
+                display: "block",
+                width: "22px",
+                height: "2px",
+                background: "var(--text-primary)",
+                borderRadius: "1px",
+                transition: "transform 0.25s ease",
+                transformOrigin: "center",
+                transform: menuOpen
+                  ? "rotate(45deg) translate(0px, 7px)"
+                  : "none",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "22px",
+                height: "2px",
+                background: "var(--text-primary)",
+                borderRadius: "1px",
+                transition: "opacity 0.25s ease, transform 0.25s ease",
+                opacity: menuOpen ? 0 : 1,
+                transform: menuOpen ? "scaleX(0)" : "none",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "22px",
+                height: "2px",
+                background: menuOpen
+                  ? "var(--accent-red)"
+                  : "var(--text-primary)",
+                borderRadius: "1px",
+                transition: "transform 0.25s ease, background 0.3s ease",
+                transformOrigin: "center",
+                transform: menuOpen
+                  ? "rotate(-45deg) translate(0px, -7px)"
+                  : "none",
+              }}
+            />
+          </motion.button>
         </div>
       </div>
 
