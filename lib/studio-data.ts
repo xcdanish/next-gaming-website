@@ -3,7 +3,7 @@ export const studioContent = {
   subheading: "VISIONARIES",
   studioName: "REDDEVIL STUDIO",
   description:
-    "RedDevil Studio is not just a game development company. We are storytellers, artists, and visionaries. Established with a burning passion for gaming, our studio has evolved into a powerhouse of creativity and innovation. Rooster Rumble is our boldest adventure yet — and we can't wait to share it with the world.",
+    "At RedDevil Studio, our mission is simple - we turn the familiar into the unforgettable. We take ideas people already know and reimagine them into bold, living worlds that players carry with them long after the screen goes dark. We believe the best games don't just entertain - they leave a mark. They reach past the surface and pull something out of you that you forgot was there. Rooster Rumble is our boldest adventure yet - and we can't wait to share it with the world",
   location: "Based in Hyderabad, India",
   experience: "Years of passionate development",
   team: [
