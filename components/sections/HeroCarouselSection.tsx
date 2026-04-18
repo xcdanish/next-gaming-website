@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
+import Image from "next/image";
 import { CyberButton } from "@ui-elements/CyberButton";
 import { Typography } from "@ui-elements/Typography";
 import { heroDefaults } from "@lib/hero-data";
@@ -38,6 +39,15 @@ export default function HeroCarouselSection({
     return () => clearInterval(interval);
   }, [images]);
 
+  // Preload upcoming slide so carousel transitions feel instant.
+  useEffect(() => {
+    if (!images || images.length <= 1) return;
+
+    const nextIndex = (currentIndex + 1) % images.length;
+    const preloadImage = new window.Image();
+    preloadImage.src = images[nextIndex];
+  }, [currentIndex, images]);
+
   // Text animation on mount
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -66,21 +76,30 @@ export default function HeroCarouselSection({
   return (
     <section
       id="hero-carousel"
-      className="relative w-full min-h-screen overflow-x-hidden flex items-center md:items-end p-0 bg-[var(--bg-primary)]"
+      className="relative w-full min-h-screen overflow-hidden flex items-center md:items-end p-0 bg-[var(--bg-primary)]"
     >
       {/* BG Carousel Images */}
       <AnimatePresence mode="popLayout">
-        <motion.img
-          key={currentIndex}
-          src={images[currentIndex]}
+        <motion.div
+          key={`hero-slide-${currentIndex}`}
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
           className="absolute inset-0 w-full h-full object-cover"
           aria-hidden="true"
-          style={{ filter: "brightness(0.65)", objectPosition: "center" }}
-        />
+          style={{ filter: "brightness(0.65)" }}
+        >
+          <Image
+            src={images[currentIndex]}
+            alt=""
+            fill
+            priority={currentIndex === 0}
+            sizes="100vw"
+            quality={75}
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Giant Background Branding Text */}
@@ -233,7 +252,7 @@ export default function HeroCarouselSection({
             style={{ width: "auto" }}
             onClick={onButtonClick || (() => scrollTo("#game-intro"))}
           >
-            Explore More
+            {buttonTitle}
           </CyberButton>
         </motion.div>
 
