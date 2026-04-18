@@ -7,6 +7,7 @@ import Image from "next/image";
 import { CyberButton } from "@ui-elements/CyberButton";
 import { Typography } from "@ui-elements/Typography";
 import { heroDefaults } from "@lib/hero-data";
+import styles from "@style/HeroCarouselSection.module.css";
 
 interface HeroCarouselSectionProps {
   title1?: string;
@@ -86,9 +87,8 @@ export default function HeroCarouselSection({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full object-cover"
+          className={`absolute inset-0 w-full h-full object-cover ${styles.slideLayer}`}
           aria-hidden="true"
-          style={{ filter: "brightness(0.65)" }}
         >
           <Image
             src={images[currentIndex]}
@@ -97,28 +97,21 @@ export default function HeroCarouselSection({
             priority={currentIndex === 0}
             sizes="100vw"
             quality={75}
-            style={{ objectFit: "cover", objectPosition: "center" }}
+            className={styles.slideImage}
           />
         </motion.div>
       </AnimatePresence>
 
       {/* Giant Background Branding Text */}
       <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-        style={{ zIndex: 2 }}
+        className={`absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden ${styles.brandingLayer}`}
       >
         <Typography
           variant="h1"
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 0.1, scale: 1 }}
+          animate={{ opacity: "var(--hero-brand-opacity)", scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
-          className="select-none whitespace-nowrap"
-          style={{
-            fontSize: "clamp(10rem, 25vw, 24rem)",
-            WebkitTextStroke: "1px rgba(255,255,255,0.3)",
-            color: "transparent",
-            letterSpacing: "0.05em",
-          }}
+          className={`select-none whitespace-nowrap ${styles.brandText}`}
         >
           {title1} {title2}
         </Typography>
@@ -126,83 +119,45 @@ export default function HeroCarouselSection({
 
       {/* Gradients */}
       <div
-        className="absolute inset-0 video-overlay"
-        style={{ zIndex: 3 }}
+        className={`absolute inset-0 video-overlay ${styles.videoOverlayLayer}`}
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 4,
-          background:
-            "radial-gradient(ellipse at center, transparent 45%, rgba(8,8,8,0.7) 100%), linear-gradient(to top, var(--bg-primary) 0%, transparent 25%)",
-        }}
+        className={`absolute inset-0 pointer-events-none ${styles.gradientOverlay}`}
         aria-hidden="true"
       />
       {/* Scanline */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 5,
-          backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px)",
-        }}
+        className={`absolute inset-0 pointer-events-none ${styles.scanlineOverlay}`}
         aria-hidden="true"
       />
 
       {/* CONTENT */}
-      <div
-        className="relative z-10 w-full"
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "10rem 1.5rem 6rem 1.5rem",
-        }}
-      >
+      <div className={`relative z-10 w-full ${styles.contentWrap}`}>
         {/* Badge */}
         <Typography
           variant="h1"
           id="hero-title"
-          className="char-container"
+          className={`char-container ${styles.heroTitle}`}
           aria-label={`${title1} ${title2}`}
-          style={{ marginBottom: "1.5rem" }}
           ref={titleRef}
         >
           <Typography
             variant="span"
-            className="char-line"
-            style={{
-              display: "block",
-              color: "var(--text-primary)",
-              textShadow:
-                "0 0 25px rgba(var(--color-primary-red-rgb), 0.4), 0 0 50px rgba(var(--color-primary-red-rgb), 0.2)",
-            }}
+            className={`char-line ${styles.titlePrimaryLine}`}
           >
             {title1.split("").map((char, i) => (
-              <span
-                key={`title1-${i}`}
-                className="char"
-                style={{ display: "inline-block" }}
-              >
+              <span key={`title1-${i}`} className={`char ${styles.charGlyph}`}>
                 {char === " " ? "\u00A0" : char}
               </span>
             ))}
           </Typography>
           <Typography
             variant="span"
-            className="char-line"
-            style={{
-              display: "block",
-              color: "var(--accent-red)",
-              textShadow: "0 0 15px rgba(var(--color-primary-red-rgb), 0.3)",
-            }}
+            className={`char-line ${styles.titleAccentLine}`}
           >
             {title2.split("").map((char, i) => (
-              <span
-                key={`title2-${i}`}
-                className="char"
-                style={{ display: "inline-block" }}
-              >
+              <span key={`title2-${i}`} className={`char ${styles.charGlyph}`}>
                 {char === " " ? "\u00A0" : char}
               </span>
             ))}
@@ -215,11 +170,7 @@ export default function HeroCarouselSection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
           transition={{ delay: 1.1, duration: 0.6 }}
-          style={{
-            color: "var(--accent-red)",
-            marginBottom: "0.5rem",
-            letterSpacing: "0.05em",
-          }}
+          className={styles.subtitle}
         >
           {subtitle}
         </Typography>
@@ -229,13 +180,7 @@ export default function HeroCarouselSection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
-          style={{
-            color: "var(--text-secondary)",
-            maxWidth: "35rem",
-            marginBottom: "2.5rem",
-            textTransform: "none",
-            fontFamily: "var(--font-body)",
-          }}
+          className={styles.description}
         >
           {description}
         </Typography>
@@ -246,10 +191,9 @@ export default function HeroCarouselSection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
           transition={{ delay: 1.35, duration: 0.55 }}
-          style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}
+          className={styles.ctaRow}
         >
           <CyberButton
-            style={{ width: "auto" }}
             onClick={onButtonClick || (() => scrollTo("#game-intro"))}
           >
             {buttonTitle}
@@ -271,7 +215,7 @@ export default function HeroCarouselSection({
                 className={`w-12 h-1 rounded-full transition-all duration-300 ${
                   i === currentIndex
                     ? "bg-[var(--accent-red)]"
-                    : "bg-white/20 hover:bg-white/40"
+                    : "bg-[var(--bg-pill)] border border-[var(--border-subtle)] hover:bg-[var(--accent-red-glow)]"
                 }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
@@ -285,37 +229,15 @@ export default function HeroCarouselSection({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.1, duration: 0.5 }}
-        style={{
-          position: "absolute",
-          bottom: "2rem",
-          right: "2rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.4rem",
-          color: "var(--text-low-contrast)",
-          fontSize: "0.6rem",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          fontFamily: "var(--font-bebas-neue, Bebas Neue, display)",
-          zIndex: 10,
-        }}
+        className={styles.scrollIndicator}
       >
-        <Typography
-          variant="caption"
-          style={{ color: "var(--text-low-contrast)", fontSize: "0.6rem" }}
-        >
+        <Typography variant="caption" className={styles.scrollLabel}>
           Scroll
         </Typography>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          style={{
-            width: 1,
-            height: 32,
-            background:
-              "linear-gradient(to bottom, var(--accent-red), transparent)",
-          }}
+          className={styles.scrollLine}
         />
       </motion.div>
     </section>

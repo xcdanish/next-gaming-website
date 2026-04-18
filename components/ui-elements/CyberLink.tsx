@@ -22,12 +22,12 @@ export function CyberLink({ href, children, icon: Icon, onClick }: CyberLinkProp
       onClick={onClick}
       variants={{
           initial: {
-            background: "rgba(255,255,255,0.03)",
-            borderColor: "rgba(var(--color-primary-red-rgb), 0.4)",
+            background: "var(--bg-pill)",
+            borderColor: "var(--border-accent)",
           },
           hovered: {
-            background: "rgba(var(--color-primary-red-rgb), 0.1)",
-            borderColor: "rgba(var(--color-primary-red-rgb), 0.8)",
+            background: "var(--accent-red-glow)",
+            borderColor: "var(--accent-red)",
           },
         }}
         style={{
@@ -50,7 +50,7 @@ export function CyberLink({ href, children, icon: Icon, onClick }: CyberLinkProp
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%)",
+              "linear-gradient(135deg, var(--accent-red-glow) 0%, transparent 100%)",
             zIndex: 1,
           }}
         />

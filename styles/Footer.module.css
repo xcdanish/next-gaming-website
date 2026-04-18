@@ -1,0 +1,134 @@
+.footer {
+  background: var(--bg-primary);
+  border-top: 3px solid var(--accent-red);
+  padding: 6rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.footerContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.logoWrap {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+  cursor: pointer;
+}
+
+.logoWrap:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+.logoImage {
+  object-fit: contain;
+  width: 200px;
+  height: auto;
+}
+
+.description {
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  display: block;
+  line-height: 1.8;
+  font-size: 0.9rem;
+  text-align: justify;
+}
+
+.socialIcon {
+  color: var(--text-secondary);
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialIcon:hover {
+  color: var(--accent-red);
+  transform: scale(1.25) translateY(-2px);
+}
+
+.columnHeading {
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  font-weight: 900;
+}
+
+.headingDot {
+  width: 4px;
+  height: 4px;
+  background: var(--accent-red);
+}
+
+.studioLink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 0.25rem 0;
+  transition: all 0.3s ease;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.studioLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-red);
+  box-shadow: 0 0 8px var(--accent-red);
+  transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.studioLink:hover {
+  color: var(--text-primary);
+}
+
+.studioLink:hover::after {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .studioLink {
+    justify-content: flex-start;
+  }
+}
+
+.bottomRow {
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyrightText {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .copyrightText {
+    text-align: right;
+  }
+}

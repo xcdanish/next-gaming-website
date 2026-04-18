@@ -27,7 +27,9 @@
       "@ui-cards/*": ["components/ui-cards/*"],
       "@ui-elements/*": ["components/ui-elements/*"],
       "@components/*": ["components/*"],
-      "@layout/*": ["components/layout/*"]
+      "@style/*": ["styles/*"],
+      "@layout/*": ["components/layout/*"],
+      "@providers/*": ["components/providers/*"]
     }
   },
   "include": [

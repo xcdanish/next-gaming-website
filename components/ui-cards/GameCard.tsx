@@ -23,6 +23,8 @@ interface GameCardProps {
   variants?: Variants;
 }
 
+import styles from "@style/GameCard.module.css";
+
 export const GameCard: React.FC<GameCardProps> = ({ game, variants }) => {
   const router = useRouter();
 
@@ -36,106 +38,51 @@ export const GameCard: React.FC<GameCardProps> = ({ game, variants }) => {
     <Card
       variants={variants}
       whileHover={{
-        scale: 1.05,
-        y: -12,
-        backgroundColor: "var(--color-gray-darker)",
+        rotateX: 8,
+        rotateY: -8,
+        z: 30,
         transition: {
-          type: "spring",
-          stiffness: 400,
-          damping: 25,
-          mass: 1,
+          duration: 0.4,
+          ease: "easeOut",
         },
       }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
+      style={{
+        perspective: 1000,
+        transformStyle: "preserve-3d",
       }}
       className="group"
     >
       <CardImage src={game.image} alt={game.title} />
 
-      {/* Tags */}
-      {/* <CardTag side="left">{game.tag}</CardTag> */}
-      {/* <CardTag side="right" variant="accent">
-        ★ {game.rating}
-      </CardTag> */}
-
       {/* Static Info (Visible when not hovered) */}
       <CardContentOverlay>
-        <Typography
-          variant="caption"
-          style={{
-            color: "var(--accent-red)",
-            marginBottom: "0.3rem",
-            fontSize: "0.62rem",
-          }}
-        >
+        <Typography variant="caption" className={styles.genreCaption}>
           {game.genre}
         </Typography>
-        <Typography
-          variant="h5"
-          style={{ color: "var(--text-primary)", lineHeight: 1.1 }}
-        >
+        <Typography variant="h5" className={styles.cardTitle}>
           {game.title}
         </Typography>
       </CardContentOverlay>
 
       {/* Hover Info (Visible on hover) */}
       <CardContentOverlay isHovered>
-        <Typography
-          variant="caption"
-          style={{
-            color: "var(--accent-red)",
-            marginBottom: "0.35rem",
-            fontSize: "0.62rem",
-          }}
-        >
+        <Typography variant="caption" className={styles.genreCaptionHover}>
           {game.genre}
         </Typography>
-        <Typography
-          variant="h4"
-          style={{
-            color: "var(--color-white)",
-            marginBottom: "0.75rem",
-            lineHeight: 1.1,
-          }}
-        >
+        <Typography variant="h4" className={styles.cardTitleHover}>
           {game.title}
         </Typography>
 
-        <Typography
-          variant="b3"
-          style={{
-            color: "var(--text-secondary)",
-            lineHeight: 1.6,
-            marginBottom: "1.25rem",
-            textTransform: "none",
-          }}
-        >
+        <Typography variant="b3" className={styles.cardDescription}>
           {game.description}
         </Typography>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "0.6rem",
-            marginBottom: "1.5rem",
-            flexWrap: "wrap",
-          }}
-        >
+        <div className={styles.platformRow}>
           {game.platforms.map((p) => (
             <Typography
               variant="caption"
               key={p}
-              style={{
-                fontSize: "0.6rem",
-                padding: "0.2rem 0.6rem",
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "var(--text-muted-alt)",
-                borderRadius: "2px",
-              }}
+              className={styles.platformPill}
             >
               {p}
             </Typography>

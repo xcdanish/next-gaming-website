@@ -1,0 +1,57 @@
+.missionPill {
+  width: fit-content;
+}
+
+.missionDescription {
+  color: var(--text-secondary);
+  max-width: 100%;
+  line-height: 1.9;
+  font-size: 1.15rem;
+  font-weight: 400;
+  text-align: justify;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.65rem 1.5rem;
+}
+
+.statusItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.statusText {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+}
+
+.divider {
+  height: 1rem;
+  width: 1px;
+  background-color: var(--border-subtle);
+}
+
+@media (max-width: 640px) {
+  .missionPill {
+    width: 100%;
+  }
+
+  .statusRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .divider {
+    display: none;
+  }
+}

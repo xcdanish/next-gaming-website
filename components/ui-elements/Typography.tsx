@@ -137,9 +137,7 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
             fontWeight: 700,
           };
         case "span":
-          return {
-            display: "inline-block",
-          };
+          return {};
         default:
           return baseBody;
       }

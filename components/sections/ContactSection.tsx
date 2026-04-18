@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Typography } from "@ui-elements/Typography";
 import { CyberButton } from "@ui-elements/CyberButton";
+import { SectionHeader } from "@ui-elements/SectionHeader";
 
 import { contactContent as content } from "@lib/contact-data";
 import {
@@ -29,6 +30,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
   Discord: DiscordIcon,
 };
 
+import styles from "@style/ContactSection.module.css";
 import { sendEmail } from "@app/actions/sendEmail";
 
 export default function ContactSection() {
@@ -78,18 +80,8 @@ export default function ContactSection() {
   };
 
   return (
-    <section
-      id="contact"
-      style={{
-        padding: "6rem 0",
-        backgroundColor: "var(--bg-primary)",
-        border: "none",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
-      >
+    <section id="contact" className={styles.contactSection}>
+      <div className={styles.contactContainer}>
         <div className="grid-2col">
           {/* LEFT */}
           <motion.div
@@ -98,65 +90,23 @@ export default function ContactSection() {
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.65 }}
           >
-            <div style={{ width: "fit-content", marginBottom: "2.5rem" }}>
-              <Typography variant="h2" style={{ marginBottom: "0.75rem" }}>
-                <Typography variant="span" className="cyber-sweep">
-                  {content.heading1}
-                </Typography>{" "}
-                <Typography variant="span" className="cyber-sweep-red">
-                  {content.heading2}
-                </Typography>
+            <SectionHeader showDivider={true} className={styles.headingWrapper}>
+              <Typography variant="span" className="cyber-sweep">
+                {content.heading1}
+              </Typography>{" "}
+              <Typography variant="span" className="cyber-sweep-red">
+                {content.heading2}
               </Typography>
-              <div
-                className="section-divider"
-                style={{ width: "100%", marginBottom: 0 }}
-              />
-            </div>
-            <Typography
-              variant="b2"
-              style={{
-                color: "var(--text-primary)",
-                lineHeight: 1.75,
-                marginBottom: "2.5rem",
-                textTransform: "none",
-                textAlign: "justify"
-              }}
-            >
+            </SectionHeader>
+            <Typography variant="b2" className={styles.description}>
               {content.description}
             </Typography>
 
             {/* Contact info */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1.25rem",
-                marginBottom: "2.5rem",
-              }}
-            >
+            <div className={styles.infoList}>
               {content.info.map((item) => (
-                <div
-                  key={item.label}
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "1rem",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "2.5rem",
-                      height: "2.5rem",
-                      flexShrink: 0,
-                      background: "rgba(var(--color-primary-red-rgb), 0.1)",
-                      borderRadius: "2px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.1rem",
-                      color: "var(--accent-red)",
-                    }}
-                  >
+                <div key={item.label} className={styles.infoItem}>
+                  <div className={styles.iconBox}>
                     {(() => {
                       const Icon = iconMap[item.icon];
                       return Icon ? <Icon size={20} /> : null;
@@ -164,22 +114,10 @@ export default function ContactSection() {
                   </div>
 
                   <div>
-                    <Typography
-                      variant="caption"
-                      style={{
-                        color: "var(--text-primary)",
-                        marginBottom: "0.2rem",
-                      }}
-                    >
+                    <Typography variant="caption" className={styles.infoLabel}>
                       {item.label}
                     </Typography>
-                    <Typography
-                      variant="b3"
-                      style={{
-                        color: "var(--text-primary)",
-                        fontWeight: 500,
-                      }}
-                    >
+                    <Typography variant="b3" className={styles.infoValue}>
                       {item.value}
                     </Typography>
                   </div>
@@ -187,9 +125,11 @@ export default function ContactSection() {
               ))}
             </div>
 
-            <div style={{ display: "flex", gap: "1rem" }}>
+            <div className={styles.socialRow}>
               {socialLinks.map((social) => {
-                const Icon = social.icon as React.ComponentType<{ size?: number }>;
+                const Icon = social.icon as React.ComponentType<{
+                  size?: number;
+                }>;
                 return (
                   <motion.a
                     key={social.label}
@@ -201,18 +141,7 @@ export default function ContactSection() {
                       color: "var(--accent-red)",
                       y: -3,
                     }}
-                    style={{
-                      width: "2.5rem",
-                      height: "2.5rem",
-                      background: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      borderRadius: "4px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "var(--text-primary)",
-                      transition: "all 0.3s cubic-bezier(0.19, 1, 0.22, 1)",
-                    }}
+                    className={styles.socialLink}
                   >
                     {Icon && <Icon size={18} />}
                   </motion.a>
@@ -232,42 +161,21 @@ export default function ContactSection() {
               <motion.div
                 initial={{ scale: 0.92, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                style={{ textAlign: "center", padding: "4rem 2rem" }}
+                className={styles.successView}
               >
-                <div style={{ fontSize: "4rem", marginBottom: "1.25rem" }}>
-                  🎮
-                </div>
-                <Typography
-                  variant="h3"
-                  style={{
-                    color: "var(--text-primary)",
-                    marginBottom: "0.75rem",
-                  }}
-                >
+                <div className={styles.successIcon}>🎮</div>
+                <Typography variant="h3" className={styles.successTitle}>
                   {content.successTitle}
                 </Typography>
-                <Typography
-                  variant="b2"
-                  style={{ color: "var(--text-primary)" }}
-                >
+                <Typography variant="b2" style={{ color: "var(--text-primary)" }}>
                   {content.successMessage}
                 </Typography>
               </motion.div>
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1.25rem",
-                }}
-              >
-                <div className="grid-2col" style={{ gap: "1rem" }}>
-                  <div className="group flex flex-col">
-                    <label
-                      htmlFor="c-name"
-                      className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-white mb-2 transition-colors group-focus-within:text-[var(--accent-red)]"
-                    >
+              <form onSubmit={handleSubmit} className={styles.contactForm}>
+                <div className={styles.formGrid}>
+                  <div className={`group ${styles.formGroup}`}>
+                    <label htmlFor="c-name" className={styles.label}>
                       Name
                     </label>
                     <input
@@ -279,14 +187,11 @@ export default function ContactSection() {
                       onChange={(e) =>
                         setForm({ ...form, name: e.target.value })
                       }
-                      className="w-full bg-[var(--bg-card)] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
+                      className={styles.input}
                     />
                   </div>
-                  <div className="group flex flex-col">
-                    <label
-                      htmlFor="c-email"
-                      className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-white mb-2 transition-colors group-focus-within:text-[var(--accent-red)]"
-                    >
+                  <div className={`group ${styles.formGroup}`}>
+                    <label htmlFor="c-email" className={styles.label}>
                       Email
                     </label>
                     <input
@@ -298,16 +203,13 @@ export default function ContactSection() {
                       onChange={(e) =>
                         setForm({ ...form, email: e.target.value })
                       }
-                      className="w-full bg-[var(--bg-card)] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
+                      className={styles.input}
                     />
                   </div>
                 </div>
 
-                <div className="group flex flex-col">
-                  <label
-                    htmlFor="c-subject"
-                    className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white"
-                  >
+                <div className={`group ${styles.formGroup}`}>
+                  <label htmlFor="c-subject" className={styles.label}>
                     Subject
                   </label>
                   <input
@@ -319,15 +221,12 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setForm({ ...form, subject: e.target.value })
                     }
-                    className="w-full bg-[var(--bg-card)] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
+                    className={styles.input}
                   />
                 </div>
 
-                <div className="group flex flex-col">
-                  <label
-                    htmlFor="c-message"
-                    className="block text-[0.65rem] font-bold tracking-[0.18em] uppercase text-neutral-400 mb-2 transition-colors group-focus-within:text-white"
-                  >
+                <div className={`group ${styles.formGroup}`}>
+                  <label htmlFor="c-message" className={styles.label}>
                     Message
                   </label>
                   <textarea
@@ -339,24 +238,17 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setForm({ ...form, message: e.target.value })
                     }
-                    className="w-full bg-[var(--bg-card)] border border-white/10 rounded-sm py-3 px-4 text-[0.875rem] text-white outline-none transition-all hover:bg-white/5 hover:border-white/20 focus:bg-[rgba(var(--color-primary-red-rgb),0.05)] focus:border-[var(--accent-red)] focus:shadow-[0_0_15px_rgba(var(--color-primary-red-rgb),0.25)]"
-                    style={{ resize: "none" }}
+                    className={styles.textarea}
                   />
                 </div>
 
-                {error && (
-                  <div style={{ color: "var(--accent-red)", fontSize: "0.85rem", textAlign: "center", marginBottom: "0.5rem" }}>
-                    {error}
-                  </div>
-                )}
+                {error && <div className={styles.errorMessage}>{error}</div>}
 
                 <CyberButton
                   type="submit"
                   disabled={loading}
+                  className={styles.submitButton}
                   style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
                     opacity: loading ? 0.65 : 1,
                     cursor: loading ? "not-allowed" : "pointer",
                   }}
@@ -368,47 +260,27 @@ export default function ContactSection() {
           </motion.div>
         </div>
       </div>
-      
+
       {/* SUCCESS ALERT TOAST (Top Right) */}
       {showSuccessAlert && (
-        <motion.div 
+        <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
-          style={{
-            position: "fixed",
-            top: "2rem",
-            right: "2rem",
-            background: "var(--bg-card)",
-            border: "1px solid var(--accent-red)",
-            padding: "1rem 2rem",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-            backdropFilter: "blur(10px)"
-          }}
+          className={styles.successToast}
         >
-          <div style={{ fontSize: "1.5rem" }}>🚀</div>
+          <div className={styles.toastIcon}>🚀</div>
           <div>
-            <Typography variant="caption" style={{ color: "var(--accent-red)", display: "block", fontWeight: "bold", marginBottom: "2px" }}>
+            <Typography variant="caption" className={styles.toastTitle}>
               MISSION SUCCESS
             </Typography>
-            <Typography variant="b3" style={{ color: "white", textTransform: "none" }}>
+            <Typography variant="b3" className={styles.toastMessage}>
               Your message has been received!
             </Typography>
           </div>
-          <button 
+          <button
             onClick={() => setShowSuccessAlert(false)}
-            style={{ 
-              background: "none", 
-              border: "none", 
-              color: "white", 
-              cursor: "pointer", 
-              marginLeft: "1rem",
-              opacity: 0.5
-            }}
+            className={styles.closeButton}
           >
             ✕
           </button>

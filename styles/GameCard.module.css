@@ -1,0 +1,49 @@
+.genreCaption {
+  color: var(--accent-red);
+  margin-bottom: 0.3rem;
+  font-size: 0.62rem;
+}
+
+.genreCaptionHover {
+  color: var(--accent-red);
+  margin-bottom: 0.35rem;
+  font-size: 0.62rem;
+}
+
+.cardTitle {
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.cardTitleHover {
+  color: var(--card-text-hover);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.cardDescription {
+  color: var(--card-text-hover);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  text-transform: none;
+  font-size: 0.9rem;
+}
+
+.platformRow {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.platformPill {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--card-text-hover);
+  color: var(--card-text-hover);
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}

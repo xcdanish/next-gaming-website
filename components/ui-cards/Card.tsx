@@ -39,6 +39,7 @@ export const CardImage: React.FC<{ src: string; alt: string }> = ({
       width: "100%",
       aspectRatio: "3/4",
       overflow: "hidden",
+      transformStyle: "preserve-3d",
     }}
   >
     <Image
@@ -46,18 +47,25 @@ export const CardImage: React.FC<{ src: string; alt: string }> = ({
       alt={alt}
       fill
       sizes="(max-width: 768px) 100vw, 33vw"
-      style={{ objectFit: "cover", transition: "transform 0.5s ease" }}
+      style={{
+        objectFit: "cover",
+        transition: "transform 0.8s cubic-bezier(0.19, 1, 0.22, 1)",
+      }}
       className="group-hover:scale-110"
     />
+    {/* Static image gradient: ensures white text is visible even on light images */}
     <div
       style={{
         position: "absolute",
         inset: 0,
         background:
-          "linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%)",
+          "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%)",
+        opacity: 0.7,
         pointerEvents: "none",
         zIndex: 1,
+        transition: "opacity 0.4s ease",
       }}
+      className="group-hover:opacity-0"
     />
   </div>
 );
@@ -69,7 +77,7 @@ export const CardTag: React.FC<{
 }> = ({ children, side = "left", variant = "default" }) => {
   const style: React.CSSProperties = {
     position: "absolute",
-    top: "1rem",
+    top: "1.25rem",
     zIndex: 10,
     [side]: "1rem",
   };
@@ -81,13 +89,13 @@ export const CardTag: React.FC<{
           fontSize: variant === "default" ? "0.65rem" : "0.7rem",
           fontWeight: 700,
           background:
-            variant === "default" ? "rgba(0,0,0,0.7)" : "var(--accent-red)",
+            variant === "default" ? "var(--bg-pill)" : "var(--accent-red)",
           backdropFilter: variant === "default" ? "blur(6px)" : "none",
           padding: "0.25rem 0.65rem",
           borderRadius: "2px",
-          color: "var(--text-primary)",
+          color: variant === "default" ? "var(--text-primary)" : "white",
           border:
-            variant === "default" ? "1px solid rgba(255,255,255,0.1)" : "none",
+            variant === "default" ? "1px solid var(--border-subtle)" : "none",
           textTransform: "uppercase",
           letterSpacing: "0.05em",
         }}
@@ -107,8 +115,12 @@ export const CardContentOverlay: React.FC<{
       position: "absolute",
       inset: 0,
       background: isHovered
-        ? "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%)"
-        : "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%)",
+        ? "var(--card-hover-bg)"
+        : "linear-gradient(to top, var(--bg-primary) 0%, transparent 70%)",
+      border: "1px solid var(--border-subtle)",
+      boxShadow: isHovered
+        ? `0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--color-primary-red-rgb), 0.1)`
+        : "none",
       padding: isHovered ? "2rem 1.5rem" : "2rem 1.5rem 1.5rem",
       display: "flex",
       flexDirection: "column",
@@ -116,14 +128,16 @@ export const CardContentOverlay: React.FC<{
       zIndex: isHovered ? 20 : 5,
       backdropFilter: isHovered ? "blur(4px)" : "none",
       transition: "all 0.4s cubic-bezier(0.19, 1, 0.22, 1)",
-      pointerEvents: isHovered ? "auto" : "none", // Allow clicking buttons on hover overlay, disable on static overlay
+      pointerEvents: isHovered ? "auto" : "none",
+      color: isHovered ? "var(--card-text-hover)" : "inherit",
     }}
     className={
       isHovered
-        ? "opacity-0 translate-y-4 group-hover:opacity-100 group-focus:opacity-100 group-focus-within:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-focus-within:translate-y-0 group-active:translate-y-0"
-        : "opacity-100 group-hover:opacity-0 group-focus:opacity-0 group-focus-within:opacity-0 group-active:opacity-0"
+        ? "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0"
+        : "opacity-100 group-hover:opacity-0"
     }
   >
-    {children}
+    {/* Plain Content with smooth transition */}
+    <div style={{ position: "relative", zIndex: 10 }}>{children}</div>
   </div>
 );

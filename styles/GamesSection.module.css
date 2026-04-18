@@ -1,0 +1,35 @@
+.gamesSection {
+  padding: 8rem 0;
+  background-color: var(--bg-primary);
+  border: none;
+  overflow: hidden;
+}
+
+.gamesContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.description {
+  margin-top: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 34rem;
+  line-height: 1.7;
+  margin-bottom: 3.5rem;
+  text-transform: none;
+  text-align: justify;
+}
+
+.gamesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .gamesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+  }
+}

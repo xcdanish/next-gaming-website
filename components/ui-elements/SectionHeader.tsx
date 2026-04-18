@@ -50,6 +50,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
             lineHeight: 1.1,
             marginBottom: showDivider ? "0.75rem" : "0",
             minWidth: 0,
+            color: "var(--text-primary)",
           }}
         >
           {children}

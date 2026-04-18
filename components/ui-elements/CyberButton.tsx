@@ -30,10 +30,10 @@ export const CyberButton: React.FC<CyberButtonProps> = ({
         position: "relative",
         overflow: "hidden",
         background: isPrimary ? "var(--accent-red)" : "transparent",
-        color: "var(--color-white)",
+        color: isPrimary ? "var(--color-white)" : "var(--text-primary)",
         border: isPrimary
           ? "none"
-          : "1px solid rgba(var(--color-primary-red-rgb), 0.5)",
+          : "1px solid var(--border-accent)",
         fontWeight: 800,
         letterSpacing: "0.1em",
         cursor: "pointer",
@@ -88,8 +88,9 @@ export const CyberButton: React.FC<CyberButtonProps> = ({
         style={{
           position: "absolute",
           inset: 0,
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%)",
+          background: isPrimary
+            ? "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%)"
+            : "linear-gradient(135deg, var(--accent-red-glow) 0%, transparent 100%)",
           zIndex: 1,
         }}
       />

@@ -5,6 +5,8 @@ import { Typography } from "@ui-elements/Typography";
 import { SectionHeader } from "@ui-elements/SectionHeader";
 import { Hammer, Star, Gamepad2 } from "lucide-react";
 
+import styles from "@style/GameMissionSection.module.css";
+
 export interface GameMissionSectionProps {
   inDevelopment?: boolean;
   rating?: string;
@@ -46,17 +48,14 @@ export default function GameMissionSection({
         >
           {/* Status and Platforms Pill - Now positioned after the title */}
           <div
-            className="flex flex-wrap items-center gap-6 mb-10 p-1 rounded-lg bg-white/[0.02] border border-white/5 backdrop-blur-sm"
-            style={{ width: "fit-content" }}
+            className={`flex flex-wrap items-center mb-10 p-1 rounded-lg bg-[var(--bg-pill)] border border-[var(--border-subtle)] backdrop-blur-sm ${styles.missionPill}`}
           >
-            <div className="flex items-center gap-6 px-6 py-2.5">
-              <div className="flex items-center gap-3">
+            <div className={styles.statusRow}>
+              <div className={styles.statusItem}>
                 {inDevelopment ? (
                   <>
                     <Hammer size={16} className="text-[var(--accent-red)]" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
-                      IN DEVELOPMENT
-                    </span>
+                    <span className={styles.statusText}>IN DEVELOPMENT</span>
                   </>
                 ) : (
                   <>
@@ -64,18 +63,21 @@ export default function GameMissionSection({
                       size={16}
                       className="text-[var(--accent-red)] fill-[var(--accent-red)]"
                     />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
+                    <span className={styles.statusText}>
                       {rating} CRITICAL RATING
                     </span>
                   </>
                 )}
               </div>
 
-              <div className="h-4 w-[1px] bg-white/10" />
+              <div className={styles.divider} />
 
-              <div className="flex items-center gap-3">
+              <div className={styles.statusItem}>
                 <Gamepad2 size={16} className="text-[var(--accent-red)]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70">
+                <span
+                  className={styles.statusText}
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {platforms.join(" • ")}
                 </span>
               </div>
@@ -83,20 +85,14 @@ export default function GameMissionSection({
           </div>
 
           {/* Description with corner accents */}
-          <div className="relative p-8 lg:p-10 bg-white/[0.01] border border-white/5 rounded-sm">
+          <div className="relative p-8 lg:p-10 bg-[var(--bg-pill)] border border-[var(--border-subtle)] rounded-sm">
             {/* HUD Corner accents */}
             <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[var(--accent-red)]/40" />
             <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[var(--accent-red)]/10" />
 
             <Typography
               variant="b1"
-              style={{
-                color: "rgba(255,255,255,0.7)",
-                maxWidth: "100%",
-                lineHeight: "1.9",
-                fontSize: "1.15rem",
-                fontWeight: 400,
-              }}
+              className={styles.missionDescription}
             >
               {missionDescription}
             </Typography>
