@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Variants } from "framer-motion";
-import { Card, CardImage, CardContentOverlay } from "./Card";
-import { CyberButton } from "@ui-elements/CyberButton";
+import { motion, Variants } from "framer-motion";
 import { Typography } from "@ui-elements/Typography";
+import { CyberButton } from "@ui-elements/CyberButton";
+import styles from "@style/GameCard.module.css";
 
 interface GameCardProps {
   game: {
@@ -23,74 +24,89 @@ interface GameCardProps {
   variants?: Variants;
 }
 
-import styles from "@style/GameCard.module.css";
-
 export const GameCard: React.FC<GameCardProps> = ({ game, variants }) => {
   const router = useRouter();
+  const [isActive, setIsActive] = React.useState(false);
 
-  const handleRedirect = () => {
+  const handleRedirect = (e: React.MouseEvent) => {
+    // On mobile/touch, first tap reveals, second tap redirects
+    if (window.innerWidth <= 768 && !isActive) {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsActive(true);
+      return;
+    }
+
     if (game.href) {
       router.push(`/${game.id}/${game.slug}`);
     }
   };
 
   return (
-    <Card
+    <motion.div
       variants={variants}
-      whileHover={{
-        rotateX: 8,
-        rotateY: -8,
-        z: 30,
-        transition: {
-          duration: 0.4,
-          ease: "easeOut",
-        },
-      }}
-      style={{
-        perspective: 1000,
-        transformStyle: "preserve-3d",
-      }}
-      className="group"
+      className={`${styles.omniCardContainer} ${isActive ? styles.forceActive : ""}`}
+      onClick={handleRedirect}
+      onMouseLeave={() => window.innerWidth > 768 || setIsActive(false)}
     >
-      <CardImage src={game.image} alt={game.title} />
-
-      {/* Static Info (Visible when not hovered) */}
-      <CardContentOverlay>
-        <Typography variant="caption" className={styles.genreCaption}>
-          {game.genre}
-        </Typography>
-        <Typography variant="h5" className={styles.cardTitle}>
-          {game.title}
-        </Typography>
-      </CardContentOverlay>
-
-      {/* Hover Info (Visible on hover) */}
-      <CardContentOverlay isHovered>
-        <Typography variant="caption" className={styles.genreCaptionHover}>
-          {game.genre}
-        </Typography>
-        <Typography variant="h4" className={styles.cardTitleHover}>
-          {game.title}
-        </Typography>
-
-        <Typography variant="b3" className={styles.cardDescription}>
-          {game.description}
-        </Typography>
-
-        <div className={styles.platformRow}>
-          {game.platforms.map((p) => (
-            <Typography
-              variant="caption"
-              key={p}
-              className={styles.platformPill}
-            >
-              {p}
-            </Typography>
-          ))}
+      <div className={styles.omniCardInner}>
+        {/* HUD Frame Decorations */}
+        <div className={styles.hudFrame}>
+          <div className={`${styles.corner} ${styles.tl}`} />
+          <div className={`${styles.corner} ${styles.tr}`} />
+          <div className={`${styles.corner} ${styles.bl}`} />
+          <div className={`${styles.corner} ${styles.br}`} />
         </div>
 
-        <CyberButton onClick={handleRedirect}>{game.buttonTitle}</CyberButton>
-      </CardContentOverlay>
-    </Card>
+        {/* Image Layer */}
+        <div className={styles.imageWrapper}>
+          <Image
+            src={game.image}
+            alt={game.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover"
+          />
+        </div>
+
+        {/* Static Bottom Info (Desktop Only - Hidden on Hover) */}
+        <div className={styles.staticInfo}>
+          <Typography variant="caption" className={styles.genre}>
+            {game.genre}
+          </Typography>
+          <Typography variant="h4" className={styles.title}>
+            {game.title}
+          </Typography>
+        </div>
+
+        {/* Interaction/Reveal Layer */}
+        <div className={styles.contentReveal}>
+          <div className="mb-4">
+            <Typography variant="caption" className={styles.genreHover}>
+              {game.genre}
+            </Typography>
+            <Typography variant="h3" className={styles.titleHover}>
+              {game.title}
+            </Typography>
+          </div>
+
+          <Typography variant="b3" className={styles.desc}>
+            {game.description}
+          </Typography>
+
+          <div className={styles.platformList}>
+            {game.platforms.map((p) => (
+              <span key={p} className={styles.tag}>
+                {p}
+              </span>
+            ))}
+          </div>
+
+          <CyberButton className="w-full">
+            {game.buttonTitle}
+          </CyberButton>
+        </div>
+      </div>
+    </motion.div>
   );
 };

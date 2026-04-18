@@ -1,49 +1,208 @@
-.genreCaption {
-  color: var(--accent-red);
-  margin-bottom: 0.3rem;
-  font-size: 0.62rem;
+.omniCardContainer {
+  position: relative;
+  width: 100%;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--border-subtle) 0%, transparent 50%, var(--border-subtle) 100%);
+  border-radius: 4px;
+  overflow: visible;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
 }
 
-.genreCaptionHover {
-  color: var(--accent-red);
-  margin-bottom: 0.35rem;
-  font-size: 0.62rem;
+.omniCardContainer:hover,
+.omniCardContainer.forceActive {
+  transform: translateY(-8px) scale(1.02);
+  background: linear-gradient(135deg, var(--accent-red) 0%, transparent 50%, var(--accent-red) 100%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(var(--color-primary-red-rgb), 0.15);
 }
 
-.cardTitle {
-  color: var(--text-primary);
-  line-height: 1.1;
+.omniCardInner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 10/14;
+  background: var(--bg-card);
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.cardTitleHover {
-  color: var(--card-text-hover);
-  line-height: 1.1;
-  margin-bottom: 0.75rem;
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.cardDescription {
-  color: var(--card-text-hover);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-  text-transform: none;
-  font-size: 0.9rem;
+.omniCardContainer:hover .imageWrapper,
+.omniCardContainer.forceActive .imageWrapper {
+  transform: scale(1.1) rotate(1deg);
+  filter: brightness(0.3) saturate(1.2);
 }
 
-.platformRow {
+/* --- HUD Overlays --- */
+.hudFrame {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 10;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.omniCardContainer:hover .hudFrame,
+.omniCardContainer.forceActive .hudFrame {
+  border-color: rgba(var(--color-primary-red-rgb), 0.4);
+  inset: 10px;
+}
+
+.corner {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--accent-red);
+  opacity: 0.8;
+}
+
+.tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+.bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+.br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+/* --- Content Reveal --- */
+.contentReveal {
+  position: absolute;
+  inset: 0;
   display: flex;
-  gap: 0.6rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  z-index: 20;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 45%, transparent 100%);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.omniCardContainer:hover .contentReveal,
+.omniCardContainer.forceActive .contentReveal {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* --- Floating Info (Static Style) --- */
+.staticInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem 1.5rem;
+  z-index: 15;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  transition: all 0.3s ease;
+}
+
+.omniCardContainer:hover .staticInfo,
+.omniCardContainer.forceActive .staticInfo {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+/* --- Typography --- */
+.title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+
+.titleHover {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: #ffffff !important; 
+  text-transform: uppercase;
+}
+
+.genre {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--accent-red);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.genreHover {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--color-accent-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.desc {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85) !important;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.platformList {
+  display: flex;
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
-.platformPill {
-  font-size: 0.65rem;
-  padding: 0.25rem 0.75rem;
-  background: transparent;
-  border: 1px solid var(--card-text-hover);
-  color: var(--card-text-hover);
-  border-radius: 2px;
+.tag {
+  font-size: 0.55rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #ffffff;
+  border-radius: 1px;
   font-weight: 700;
-  letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+/* --- Mobile Fixes --- */
+@media (max-width: 768px) {
+  .omniCardInner {
+    aspect-ratio: 10/13.5; /* Slightly shorter for better vertical space on mobile */
+  }
+
+  /* Show info when active/tapped */
+  .omniCardContainer.forceActive .contentReveal {
+    background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 90%, transparent 100%);
+    padding: 1rem;
+  }
+
+  .titleHover {
+    font-size: 1.35rem;
+  }
+
+  .desc {
+    -webkit-line-clamp: 3;
+    font-size: 0.75rem;
+  }
+
+  .hudFrame {
+    inset: 8px;
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 400px) {
+  .titleHover { font-size: 1.2rem; }
+  .desc { -webkit-line-clamp: 2; }
 }
