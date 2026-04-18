@@ -45,6 +45,15 @@ export default function AboutSection({
       }}
     >
       <style>{`
+        /* minmax(0,1fr) lets columns shrink below intrinsic min-width so copy/tags wrap on narrow viewports */
+        .about-section-grid.grid-2col {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        }
+        @media (max-width: 900px) {
+          .about-section-grid.grid-2col {
+            grid-template-columns: minmax(0, 1fr);
+          }
+        }
         @media (max-width: 1024px) {
           .about-dual-wrapper { 
             aspect-ratio: 1.2 / 1 !important;
@@ -69,11 +78,12 @@ export default function AboutSection({
         style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem" }}
       >
         <div
-          className="grid-2col"
+          className="grid-2col about-section-grid"
           style={{ alignItems: "center", gap: "4rem" }}
         >
           {/* LEFT CONTENT */}
           <motion.div
+            className="min-w-0 w-full max-w-full"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
@@ -104,6 +114,7 @@ export default function AboutSection({
             </SectionHeader>
 
             <div
+              className="min-w-0 w-full max-w-full"
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -115,6 +126,9 @@ export default function AboutSection({
                   key={i}
                   variant={i === 0 ? "b1" : "b2"}
                   style={{
+                    maxWidth: "100%",
+                    overflowWrap: "break-word",
+                    textAlign: "justify",
                     color:
                       i === 0 ? "var(--text-primary)" : "var(--text-secondary)",
                   }}
@@ -125,6 +139,7 @@ export default function AboutSection({
 
               {tags && tags.length > 0 && (
                 <div
+                  className="min-w-0 w-full max-w-full"
                   style={{
                     display: "flex",
                     flexWrap: "wrap",
@@ -137,6 +152,10 @@ export default function AboutSection({
                       key={i}
                       variant="caption"
                       style={{
+                        boxSizing: "border-box",
+                        maxWidth: "100%",
+                        overflowWrap: "break-word",
+                        whiteSpace: "normal",
                         padding: "0.5rem 1rem",
                         background:
                           i === tags.length - 1
@@ -159,7 +178,15 @@ export default function AboutSection({
               {footer && (
                 <Typography
                   variant="caption"
-                  style={{ color: "var(--accent-red)", marginTop: "1rem" }}
+                  component="p"
+                  style={{
+                    display: "block",
+                    maxWidth: "100%",
+                    overflowWrap: "break-word",
+                    whiteSpace: "normal",
+                    color: "var(--accent-red)",
+                    marginTop: "1rem",
+                  }}
                 >
                   {footer}
                 </Typography>

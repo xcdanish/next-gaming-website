@@ -55,6 +55,7 @@ export default function GamesSection() {
             lineHeight: 1.7,
             marginBottom: "3.5rem",
             textTransform: "none",
+            textAlign: "justify",
           }}
         >
           {content.description}

@@ -202,7 +202,7 @@ export default function ComingSoonSection() {
                 width: "100%",
                 marginBottom: "3rem",
                 fontSize: "1.05rem",
-                textAlign: "center",
+                textAlign: "justify",
               }}
             >
               {content.description}

@@ -71,10 +71,7 @@ export default function Footer() {
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}>
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-8 mb-20 text-center lg:text-left">
           {/* LOGO COLUMN */}
-          <div
-            className="flex-shrink-0 flex items-start justify-center lg:justify-start"
-            style={{ alignSelf: "flex-start" }}
-          >
+          <div className="flex-shrink-0 flex items-start justify-center lg:justify-start self-center lg:self-start">
             <div
               onClick={() => scrollTo("#hero")}
               style={{
@@ -103,6 +100,7 @@ export default function Footer() {
           {/* CONTENT + ICONS COLUMN */}
           <div className="flex-1 max-w-[450px] flex flex-col items-center lg:items-start">
             <Typography
+              className="footer-description"
               variant="b2"
               style={{
                 color: "rgba(255,255,255,0.6)",
@@ -110,6 +108,7 @@ export default function Footer() {
                 display: "block",
                 lineHeight: "1.8",
                 fontSize: "0.9rem",
+                textAlign: "justify",
               }}
             >
               {content.description}
@@ -145,8 +144,7 @@ export default function Footer() {
 
           {/* STUDIO COLUMN */}
           <div
-            className="flex-shrink-0 flex flex-col items-center lg:items-start"
-            style={{ alignSelf: "flex-start" }}
+            className="flex-shrink-0 flex flex-col items-center lg:items-start self-center lg:self-start"
           >
             <Typography
               variant="h6"
@@ -193,13 +191,14 @@ export default function Footer() {
                       border: "none",
                       cursor: "pointer",
                       color: "rgba(255,255,255,0.5)",
-                      textAlign: "left",
+                      textAlign: "center",
                       padding: 0,
                       transition: "all 0.3s cubic-bezier(0.19, 1, 0.22, 1)",
                       fontFamily: "var(--font-body)",
                       fontSize: "0.85rem",
                       display: "flex",
                       alignItems: "center",
+                      justifyContent: "center",
                       gap: "0.5rem",
                     }}
                   >
@@ -218,7 +217,7 @@ export default function Footer() {
             paddingTop: "2rem",
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "center",
           }}
         >
           <Typography

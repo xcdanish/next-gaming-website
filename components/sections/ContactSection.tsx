@@ -119,6 +119,7 @@ export default function ContactSection() {
                 lineHeight: 1.75,
                 marginBottom: "2.5rem",
                 textTransform: "none",
+                textAlign: "justify"
               }}
             >
               {content.description}
