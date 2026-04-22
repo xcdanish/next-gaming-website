@@ -15,10 +15,13 @@ const navLinks = [
 import dynamic from "next/dynamic";
 import styles from "@style/Navbar.module.css";
 
-const ThemeToggle = dynamic(() => import("@ui-elements/ThemeToggle").then(mod => mod.ThemeToggle), {
-  ssr: false,
-  loading: () => <div className="w-10 h-10" />
-});
+const ThemeToggle = dynamic(
+  () => import("@ui-elements/ThemeToggle").then((mod) => mod.ThemeToggle),
+  {
+    ssr: false,
+    loading: () => <div className="w-10 h-10" />,
+  },
+);
 
 export default function Navbar() {
   const router = useRouter();
@@ -65,7 +68,7 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
       className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}
     >
       {/* Scroll Progress Bar at the absolute top of the header */}
@@ -156,7 +159,11 @@ export default function Navbar() {
                   key={link.href}
                   initial={{ opacity: 0, x: -14 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.04, duration: 0.25 }}
+                  transition={{
+                    delay: i * 0.04,
+                    duration: 0.25,
+                    ease: "easeInOut",
+                  }}
                 >
                   <div className={styles.mobileNavLinkWrapper}>
                     <Typography

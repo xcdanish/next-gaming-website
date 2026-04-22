@@ -64,7 +64,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Red Devil Studio | Immersive & Hardcore Gaming Experiences",
-    description: "Creators of 'Rooster Rumble' and 'Rot in Hell'. Experience next-gen indie gaming.",
+    description:
+      "Creators of 'Rooster Rumble' and 'Rot in Hell'. Experience next-gen indie gaming.",
     images: ["/banner/rooster.jpeg"],
   },
   icons: {

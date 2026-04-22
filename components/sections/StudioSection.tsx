@@ -21,7 +21,7 @@ const TimelineMarker = () => {
           boxShadow: "0 0 15px rgba(var(--color-primary-red-rgb), 0.8)",
         }}
         viewport={{ once: false, amount: 0.8, margin: "-10% 0px -10% 0px" }}
-        transition={{ duration: 0.4, ease: "backOut" }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
         className={styles.timelineMarkerCircle}
       />
     </div>
@@ -49,8 +49,8 @@ export default function StudioSection() {
           className={styles.headingWrap}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           <SectionHeader showDivider={false}>
             <Typography variant="span" className="cyber-sweep">
@@ -86,8 +86,8 @@ export default function StudioSection() {
               className={styles.introRow}
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeInOut" }}
             >
               <div className={`group ${styles.logoBox}`}>
                 <Image
@@ -116,8 +116,8 @@ export default function StudioSection() {
               className={styles.statRow}
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
             >
               <div className={styles.statCard}>
                 <div className={styles.statIconWrap}>
@@ -155,13 +155,10 @@ export default function StudioSection() {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeInOut" }}
             >
-              <SectionHeader
-                showDivider={false}
-                className={styles.teamHeader}
-              >
+              <SectionHeader showDivider={false} className={styles.teamHeader}>
                 <Typography variant="span" className="cyber-sweep">
                   CORE
                 </Typography>{" "}
@@ -170,14 +167,20 @@ export default function StudioSection() {
                 </Typography>
               </SectionHeader>
 
-              <div className={`studio-team-grid lg:!grid-cols-4 ${styles.teamGrid}`}>
+              <div
+                className={`studio-team-grid lg:!grid-cols-4 ${styles.teamGrid}`}
+              >
                 {studioContent.team.map((member, i) => (
                   <motion.div
                     key={member.name}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                    viewport={{ once: false }}
+                    transition={{
+                      delay: i * 0.1,
+                      duration: 0.5,
+                      ease: "easeInOut",
+                    }}
                     className={styles.memberCard}
                   >
                     <div className={styles.memberImageWrap}>

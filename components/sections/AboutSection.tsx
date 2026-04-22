@@ -47,7 +47,7 @@ export default function AboutSection({
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             <SectionHeader>
               {title1 && (
@@ -118,7 +118,7 @@ export default function AboutSection({
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
+                  transition={{ duration: 0.5, delay: 0.4, ease: "easeInOut" }}
                   className={styles.backButtonWrap}
                 >
                   <CyberLink
@@ -143,7 +143,7 @@ export default function AboutSection({
             initial={{ opacity: 0, scale: 0.9, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 1, ease: "circOut" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
             className={`${styles.imageCol} ${isDual ? styles.imageColDual : ""}`}
           >
             {/* GLOW EFFECT */}
@@ -171,17 +171,17 @@ export default function AboutSection({
                   transition={{
                     duration: 0.7,
                     delay: i * 0.15,
-                    ease: "easeOut",
+                    ease: "easeInOut",
                   }}
-                      whileHover={
-                        isDual
-                          ? {
-                              y: -10,
-                              filter:
-                                "drop-shadow(0px 15px 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 55px rgba(var(--color-primary-red-rgb), 0.5))",
-                            }
-                          : undefined
-                      }
+                  whileHover={
+                    isDual
+                      ? {
+                          y: -10,
+                          filter:
+                            "drop-shadow(0px 15px 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 55px rgba(var(--color-primary-red-rgb), 0.5))",
+                        }
+                      : undefined
+                  }
                 >
                   <Image
                     src={src}

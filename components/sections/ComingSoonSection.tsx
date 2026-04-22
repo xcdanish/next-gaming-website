@@ -42,8 +42,8 @@ export default function ComingSoonSection() {
             className={styles.charCol}
             initial={{ opacity: 0, scale: 0.9, x: -40 }}
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1, ease: "circOut" }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
           >
             {/* Glow behind char */}
             <div aria-hidden="true" className={styles.glow} />
@@ -52,8 +52,8 @@ export default function ComingSoonSection() {
               className={styles.charImg}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
             >
               <Image
                 src={content.char.src}
@@ -70,8 +70,8 @@ export default function ComingSoonSection() {
             className={styles.contentCol}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             {/* Transmission badge */}
             <div className={styles.badge}>
@@ -113,7 +113,7 @@ export default function ComingSoonSection() {
                   initial="initial"
                   whileInView="visible"
                   whileHover="hover"
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   variants={{
                     initial: { opacity: 0, y: 30 },
                     visible: {

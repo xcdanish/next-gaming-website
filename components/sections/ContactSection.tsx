@@ -167,7 +167,10 @@ export default function ContactSection() {
                 <Typography variant="h3" className={styles.successTitle}>
                   {content.successTitle}
                 </Typography>
-                <Typography variant="b2" style={{ color: "var(--text-primary)" }}>
+                <Typography
+                  variant="b2"
+                  style={{ color: "var(--text-primary)" }}
+                >
                   {content.successMessage}
                 </Typography>
               </motion.div>

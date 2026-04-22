@@ -90,10 +90,7 @@ export default function GameMissionSection({
             <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[var(--accent-red)]/40" />
             <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[var(--accent-red)]/10" />
 
-            <Typography
-              variant="b1"
-              className={styles.missionDescription}
-            >
+            <Typography variant="b1" className={styles.missionDescription}>
               {missionDescription}
             </Typography>
           </div>

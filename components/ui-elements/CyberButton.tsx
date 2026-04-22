@@ -31,9 +31,7 @@ export const CyberButton: React.FC<CyberButtonProps> = ({
         overflow: "hidden",
         background: isPrimary ? "var(--accent-red)" : "transparent",
         color: isPrimary ? "var(--color-white)" : "var(--text-primary)",
-        border: isPrimary
-          ? "none"
-          : "1px solid var(--border-accent)",
+        border: isPrimary ? "none" : "1px solid var(--border-accent)",
         fontWeight: 800,
         letterSpacing: "0.1em",
         cursor: "pointer",

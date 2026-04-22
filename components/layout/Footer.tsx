@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useRouter, usePathname } from "next/navigation";
 import { Typography } from "@ui-elements/Typography";
 
@@ -63,13 +64,16 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-8 mb-20 text-center lg:text-left">
+        <motion.div
+          className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-8 mb-20 text-center lg:text-left"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+        >
           {/* LOGO COLUMN */}
           <div className="flex-shrink-0 flex items-start justify-center lg:justify-start self-center lg:self-start">
-            <div
-              onClick={() => scrollTo("#hero")}
-              className={styles.logoWrap}
-            >
+            <div onClick={() => scrollTo("#hero")} className={styles.logoWrap}>
               <Image
                 src="/icons/reddevil-logo.png"
                 alt="Red Devil Studio"
@@ -90,14 +94,22 @@ export default function Footer() {
             </Typography>
 
             <div className="flex justify-center lg:justify-start gap-6">
-              {socialLinks.map((social) => (
-                <a
+              {socialLinks.map((social, i) => (
+                <motion.a
                   key={social.label}
                   href={social.href}
                   className={styles.socialIcon}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false }}
+                  transition={{
+                    delay: i * 0.1,
+                    duration: 0.4,
+                    ease: "easeInOut",
+                  }}
                 >
                   {social.icon}
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
@@ -109,30 +121,44 @@ export default function Footer() {
               STUDIO
             </Typography>
             <nav className="flex flex-col items-center lg:items-start gap-5">
-              {content.studioLinks.map((link) => {
+              {content.studioLinks.map((link, i) => {
                 let targetId = "#hero";
                 if (link === "Our Games") targetId = "#games";
                 if (link === "Join Us") targetId = "#studio";
 
                 return (
-                  <button
+                  <motion.button
                     key={link}
                     onClick={() => scrollTo(targetId)}
                     className={styles.studioLink}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false }}
+                    transition={{
+                      delay: 0.4 + i * 0.1,
+                      duration: 0.4,
+                      ease: "easeInOut",
+                    }}
                   >
                     {link}
-                  </button>
+                  </motion.button>
                 );
               })}
             </nav>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={styles.bottomRow}>
+        <motion.div
+          className={styles.bottomRow}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+        >
           <Typography variant="b4" className={styles.copyrightText}>
             {content.copyright}
           </Typography>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

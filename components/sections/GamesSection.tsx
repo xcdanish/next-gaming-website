@@ -16,7 +16,7 @@ const cardVariants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: "easeOut" as const },
+    transition: { duration: 0.55, ease: "easeInOut" as const },
   },
 };
 
@@ -39,7 +39,7 @@ export default function GamesSection() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
+          transition={{ delay: 0.1, duration: 0.5, ease: "easeInOut" }}
           className={styles.description}
         >
           {content.description}

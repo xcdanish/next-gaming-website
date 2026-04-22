@@ -111,7 +111,6 @@
 
 /* ===== COMPONENT LAYER — custom UI classes ===== */
 @layer components {
-
   /* -- Buttons -- */
   .btn-primary {
     display: inline-block;
@@ -127,12 +126,14 @@
     padding: 0.75rem 2rem;
     border: none;
     cursor: pointer;
-    clip-path: polygon(0 0,
-        calc(100% - 10px) 0,
-        100% 10px,
-        100% 100%,
-        10px 100%,
-        0 calc(100% - 10px));
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
     transition:
       background-color 0.2s ease,
       transform 0.15s ease;
@@ -144,9 +145,11 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg,
-        rgba(var(--color-primary-red-rgb), 0.2) 0%,
-        transparent 60%);
+    background: linear-gradient(
+      135deg,
+      rgba(var(--color-primary-red-rgb), 0.2) 0%,
+      transparent 60%
+    );
     opacity: 0;
     transition: opacity 0.2s ease;
   }
@@ -178,12 +181,14 @@
     padding: 0.75rem 2rem;
     border: 1px solid rgba(var(--color-primary-red-rgb), 0.5);
     cursor: pointer;
-    clip-path: polygon(0 0,
-        calc(100% - 10px) 0,
-        100% 10px,
-        100% 100%,
-        10px 100%,
-        0 calc(100% - 10px));
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
     transition:
       background-color 0.2s ease,
       border-color 0.2s ease,
@@ -222,9 +227,11 @@
   .hero-stat-divider {
     width: 100%;
     height: 3px;
-    background: linear-gradient(to right,
-        rgba(var(--color-primary-red-rgb), 0.45) 0%,
-        transparent 100%);
+    background: linear-gradient(
+      to right,
+      rgba(var(--color-primary-red-rgb), 0.45) 0%,
+      transparent 100%
+    );
     margin-top: 1rem;
     position: relative;
     overflow: hidden;
@@ -239,12 +246,14 @@
     top: 0;
     bottom: 0;
     width: 70%;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(var(--color-primary-red-rgb), 0.8) 25%,
-        var(--text-primary) 50%,
-        rgba(var(--color-primary-red-rgb), 0.8) 75%,
-        transparent 100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(var(--color-primary-red-rgb), 0.8) 25%,
+      var(--text-primary) 50%,
+      rgba(var(--color-primary-red-rgb), 0.8) 75%,
+      transparent 100%
+    );
     filter: brightness(1.1);
     box-shadow: 0 0 12px rgba(var(--color-primary-red-rgb), 0.4);
     animation: intense-scan 4s infinite cubic-bezier(0.19, 1, 0.22, 1);
@@ -378,10 +387,12 @@
     inset: -1px;
     padding: 1px;
     border-radius: 2px;
-    background: linear-gradient(135deg,
-        rgba(var(--color-primary-red-rgb), 0.6),
-        transparent 40%,
-        rgba(var(--color-primary-red-rgb), 0.6));
+    background: linear-gradient(
+      135deg,
+      rgba(var(--color-primary-red-rgb), 0.6),
+      transparent 40%,
+      rgba(var(--color-primary-red-rgb), 0.6)
+    );
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
@@ -415,10 +426,12 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg,
-        transparent,
-        var(--accent-red),
-        transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--accent-red),
+      transparent
+    );
     animation: scan-divider 3s cubic-bezier(0.19, 1, 0.22, 1) infinite;
   }
 
@@ -440,10 +453,12 @@
     left: -150%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg,
-        transparent,
-        var(--border-subtle),
-        transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border-subtle),
+      transparent
+    );
     transform: skewX(-25deg);
     transition: 0.75s;
     z-index: 5;
@@ -455,7 +470,6 @@
   }
 
   @keyframes border-pulse {
-
     0%,
     100% {
       opacity: 0.6;
@@ -478,9 +492,11 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg,
-        rgba(var(--color-primary-red-rgb), 0.6) 0%,
-        transparent 55%);
+    background: linear-gradient(
+      135deg,
+      rgba(var(--color-primary-red-rgb), 0.6) 0%,
+      transparent 55%
+    );
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
@@ -495,11 +511,13 @@
 
   /* -- Video overlay -- */
   .video-overlay {
-    background: linear-gradient(to bottom,
-        rgba(8, 8, 8, 0.25) 0%,
-        rgba(8, 8, 8, 0.05) 35%,
-        rgba(8, 8, 8, 0.55) 75%,
-        rgba(8, 8, 8, 1) 100%);
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 8, 8, 0.25) 0%,
+      rgba(8, 8, 8, 0.05) 35%,
+      rgba(8, 8, 8, 0.55) 75%,
+      rgba(8, 8, 8, 1) 100%
+    );
   }
 
   /* -- Stat item -- */
@@ -602,7 +620,6 @@
 
 /* ===== KEYFRAMES ===== */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0);
@@ -657,14 +674,16 @@
 
 /* -- Cyber-Virus Sweep Animation -- */
 .cyber-sweep {
-  background: linear-gradient(90deg,
-      var(--text-primary) 0%,
-      var(--text-primary) 40%,
-      var(--color-vivid-red) 48%,
-      var(--text-primary) 50%,
-      var(--color-vivid-red) 52%,
-      var(--text-primary) 60%,
-      var(--text-primary) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--text-primary) 0%,
+    var(--text-primary) 40%,
+    var(--color-vivid-red) 48%,
+    var(--text-primary) 50%,
+    var(--color-vivid-red) 52%,
+    var(--text-primary) 60%,
+    var(--text-primary) 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -674,14 +693,16 @@
 }
 
 .cyber-sweep-red {
-  background: linear-gradient(90deg,
-      var(--accent-red) 0%,
-      var(--accent-red) 40%,
-      var(--text-primary) 48%,
-      var(--accent-red) 50%,
-      var(--text-primary) 52%,
-      var(--accent-red) 60%,
-      var(--accent-red) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--accent-red) 0%,
+    var(--accent-red) 40%,
+    var(--text-primary) 48%,
+    var(--accent-red) 50%,
+    var(--text-primary) 52%,
+    var(--accent-red) 60%,
+    var(--accent-red) 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -760,7 +781,6 @@
 
 /* Tablet (≤ 1024px) */
 @media (max-width: 1024px) {
-
   /* Reduce section horizontal padding */
   [style*="padding: 6rem 0"] {
     padding-left: 1rem !important;
@@ -770,7 +790,6 @@
 
 /* Mobile (≤ 768px) */
 @media (max-width: 768px) {
-
   /* ── Section padding ── */
   section {
     padding-top: 4rem !important;
@@ -835,7 +854,6 @@
 
 /* Tiny screens (≤ 420px) */
 @media (max-width: 420px) {
-
   /* Team cards: single col */
   [style*="minmax(min(100%, 280px)"] {
     grid-template-columns: 1fr !important;

@@ -110,7 +110,7 @@ export default function HeroCarouselSection({
           variant="h1"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: "var(--hero-brand-opacity)", scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
+          transition={{ duration: 2, ease: "easeInOut" }}
           className={`select-none whitespace-nowrap ${styles.brandText}`}
         >
           {title1} {title2}
@@ -169,7 +169,7 @@ export default function HeroCarouselSection({
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
+          transition={{ delay: 1.1, duration: 0.6, ease: "easeInOut" }}
           className={styles.subtitle}
         >
           {subtitle}
@@ -179,7 +179,7 @@ export default function HeroCarouselSection({
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          transition={{ delay: 1.2, duration: 0.6, ease: "easeInOut" }}
           className={styles.description}
         >
           {description}
@@ -190,7 +190,7 @@ export default function HeroCarouselSection({
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
-          transition={{ delay: 1.35, duration: 0.55 }}
+          transition={{ delay: 1.35, duration: 0.55, ease: "easeInOut" }}
           className={styles.ctaRow}
         >
           <CyberButton

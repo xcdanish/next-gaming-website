@@ -3,6 +3,7 @@
 import HeroCarouselSection from "@sections/HeroCarouselSection";
 import { games } from "@lib/games-data";
 import ComingSoonSection from "@sections/ComingSoonSection";
+import KIGISection from "@sections/KIGISection";
 import GamesSection from "@sections/GamesSection";
 import StudioSection from "@sections/StudioSection";
 
@@ -22,13 +23,16 @@ export default function Home() {
         <AboutSection {...roosterGame.about} showBackButton={false} />
       )}
 
-      {/* 4. Coming Soon Notify - match with current existing out theme */}
+      {/* 4. KIGI Section */}
+      <KIGISection />
+
+      {/* 5. Coming Soon Notify - match with current existing out theme */}
       <ComingSoonSection />
 
-      {/* 5. Our Game - 2 roster rumble - rot in hell */}
+      {/* 6. Our Game - 2 roster rumble - rot in hell */}
       <GamesSection />
 
-      {/* 6. Studio timeline with core team */}
+      {/* 7. Studio timeline with core team */}
       <StudioSection />
     </main>
   );

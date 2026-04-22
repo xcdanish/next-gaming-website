@@ -102,9 +102,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, variants }) => {
             ))}
           </div>
 
-          <CyberButton className="w-full">
-            {game.buttonTitle}
-          </CyberButton>
+          <CyberButton className="w-full">{game.buttonTitle}</CyberButton>
         </div>
       </div>
     </motion.div>

@@ -29,7 +29,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
       if (e.key === "ArrowLeft") onPrev();
       if (e.key === "ArrowRight") onNext();
     },
-    [isOpen, onClose, onPrev, onNext]
+    [isOpen, onClose, onPrev, onNext],
   );
 
   useEffect(() => {
