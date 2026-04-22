@@ -35,54 +35,31 @@ export default function KIGISection() {
               }}
             />
 
-            {/* Corner Markers */}
-            {/* Animated Corner Brackets */}
+            {/* Corner Brackets */}
             <div className={`${styles.cornerBracket} ${styles.topLeft}`} />
             <div className={`${styles.cornerBracket} ${styles.topRight}`} />
             <div className={`${styles.cornerBracket} ${styles.bottomLeft}`} />
             <div className={`${styles.cornerBracket} ${styles.bottomRight}`} />
 
-            {/* Floating Data Particles */}
+            {/* HUD Rings (The Circles) */}
+            <div className={styles.hudFrame} />
             <motion.div
-              className={styles.dataParticle}
-              animate={{ y: [0, -40, 0], opacity: [0, 1, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              style={{ left: "10%" }}
-            />
-            <motion.div
-              className={styles.dataParticle}
-              animate={{ y: [0, -60, 0], opacity: [0, 0.8, 0] }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "linear",
-                delay: 1,
+              className={styles.hudFrame}
+              style={{
+                padding: "20px",
+                animationDirection: "reverse",
+                opacity: 0.5,
               }}
-              style={{ right: "15%" }}
-            />
-            <motion.div
-              className={styles.dataParticle}
-              animate={{ y: [0, -30, 0], opacity: [0, 0.5, 0] }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear",
-                delay: 2,
-              }}
-              style={{ bottom: "20%", left: "20%" }}
             />
 
-            {/* The Logo Container */}
+            {/* Centered Image (No background box) */}
             <motion.div
-              className={styles.logoWrapper}
+              className={styles.logoWrapperSimple}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false }}
               transition={{ duration: 1, ease: "easeInOut" }}
             >
-              {/* Scanline Effect (Behind Logo) */}
-              <div className={styles.scanline} style={{ zIndex: -1 }} />
-
               <Image
                 src={logoSrc}
                 alt="KRAFTON India Gaming Incubator"
